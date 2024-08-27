@@ -1,2 +1,2 @@
 # punchCardPlugin
-punch card loyalty
+punch card 

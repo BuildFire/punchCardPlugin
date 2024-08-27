@@ -1,22 +1,24 @@
 {
-  "author":"Daniel Hindi"
-,"pluginName":"Punch Card Loyalty"
-,"pluginDescription":"Simple punch card loyalty system"
-,"supportEmail":"devSupport@buildfire.com"
-,"control":{
-  "content":{
-    "enabled":true
-  }
-, "design":{
-    "enabled":false
-  }
-, "settings":{
-    "enabled":false
-  }
-}
-,"widget":{
-
-},
-  "features" : [],
-  "languages" : ["en"]
+  "author": "BuildFire",
+  "pluginName":"Punch Card",
+  "pluginDescription":"Bare bones plugin showing simple autonomy of a plugin",
+  "supportEmail": "support@buildfire.com",
+  "requireLogin": true,
+  "control": {
+    "content": {
+      "enabled": true
+    },
+    "design": {
+      "enabled": false
+    },
+    "settings": {
+      "enabled": true
+    },
+    "customTabs": []
+  },
+  "widget": {},
+  "features": [],
+  "languages": [
+    "en"
+  ]
 }

@@ -1,187 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!--
-		NOTE:
-		1. You can reference the file in SDK via relative path
-		2. The Control and Widget Should NOT share resources. Only the Widget folder will make it to the device
-		3. You may include any JS framework you want with your Widget and Control folders. However, keep in mind
-		    to keep you plugin as light weight as possible for performance and transport reasons
-	-->
-
-	<!-- You can load helper.css to use our helper classes.
-	<link href="../../../../styles/helper.css" rel="stylesheet">
-	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8" />
 
 	<!-- JS -->
 	<script src="../../../scripts/buildfire.js"></script>
 
+	<!-- build:bundleJSFiles  -->
+	<script src="./global/js/models/Post.js"></script>
+	<script src="js/b.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:bundleCSSFiles  -->
+	<link rel="stylesheet" type="text/css" href="css/a.css">
+	<!-- endbuild -->
+
 	<!--
-   <script src="../../../../scripts/angular/angular.min.js"></script>
-   <script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
-
-   <script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
-   -->
-    <style>
-
-        li {
-            cursor: pointer;
-            margin: 5px;
-            width: 25%;
-            height: 0px;
-            padding-bottom: 25%;
-            -moz-border-radius: 50px;
-            -webkit-border-radius: 50px;
-            border-radius: 50px;
-            list-style-type: none;
-            float:left;
-            font-size:400%;
-            text-align: center;
-        }
-
-        .text{
-            position: relative;
-            top:25px;
-        }
-        #pinNumber{
-            font-size:200%;
-            text-align: center;
-        }
-    </style>
-
+	<script src="../../../../scripts/angular/angular.min.js"></script>
+	<script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
+	<script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
+	-->
 </head>
 <body>
-    <br/>
-    <div style="text-align: center">
-        <input id="pinNumber" type="password" width="200px" placeholder="PIN NUMBER" style="width:300px" onkeyup="delayCheck()">
-    </div>
-    <br/>
-    <ul id="punchHoles">
-
-    </ul>
-
-
-    <script>
-
-
-
-        var punchHolesElement= document.getElementById("punchHoles");
-        var parentElement = punchHolesElement.parentNode;
-        var pinNumberElement= document.getElementById("pinNumber");
-
-        var _cardSize;
-        var _punchCount=0;
-        var _model;
-        function renderCard(size){
-            if(_cardSize==size)return;
-
-            _cardSize=size;
-            var newPunchHolesElement = document.createElement('ul');
-            for(var i =0;i< _cardSize; i++){
-                var li = document.createElement('li');
-                newPunchHolesElement.appendChild(li);
-
-                var span = document.createElement('span');
-                li.appendChild(span);
-
-                li.className="bg-primary";
-
-                span.className="text";
-                span.innerText=i + 1;
-            }
-
-            parentElement.removeChild(punchHolesElement);
-            parentElement.appendChild(newPunchHolesElement);
-            punchHolesElement = newPunchHolesElement;
-
-            loadUserPunchHistory();
-
-        }
-
-        function renderPunches(count){
-            _punchCount=count;
-            var elements =document.getElementsByTagName('li');
-
-            for(var i = 0 ; i < count ; i++){
-                elements[i].className="bg-success";
-                elements[i].childNodes[0].innerHTML="X"
-            }
-        }
-
-        function loadUserPunchHistory() {
-            buildfire.auth.login({}, function (err, user) {
-                if (!user)
-                    buildfire.notifications.alert("Must be logged in");
-                else {
-                    buildfire.userData.get(function (err, obj) {
-
-                        var log = obj.data;
-
-                        log.lastPunchedOn = new Date();
-                        if (!log.history)log.history = [];
-
-                        renderPunches(log.history.length);
-                    });
-                }
-            });
-        }
-
-        buildfire.datastore.get(function(err,result){
-            _model=result.data;
-            var cardSize =  parseInt(result.data.cardSize );
-            renderCard(cardSize);
-        });
-
-        buildfire.datastore.onUpdate(function(obj){
-            _model=obj.data;
-            renderCard( parseInt(obj.data.cardSize));
-        });
-
-        var tmr;
-        function delayCheck(){
-            if(tmr)clearTimeout(tmr);
-            tmr= setTimeout(checkPin,500);
-        }
-
-        function checkPin(){
-
-            if(_model && _model.pinNumbers && _model.pinNumbers.length){
-
-                var pin = _model.pinNumbers.find(function(e){
-                    return e.pinNumber == pinNumberElement.value;
-                });
-
-                if(pin){
-                    buildfire.auth.getCurrentUser(function(err,user){
-                        _punchCount++;
-                        renderPunches(_punchCount);
-                        pinNumberElement.value='';
-                        buildfire.userData.get(function(err,obj){
-                            var log=obj.data;
-
-                            log.lastPunchedOn = new Date();
-                            log.customerName = user.firstName + ' ' + user.lastName;
-
-                            log.lastAuthrizedBy = pin.name;
-                            if(!log.history)log.history=[];
-
-                            log.history.unshift({
-                                date: new Date()
-                                ,authorizedBy: pin.Name
-                            });
-
-                            buildfire.userData.save(log);
-
-                        });
-                    })
-
-                }
-            }
-        }
-
-    </script>
-
+<span>Widget - Hello, world!</span>
 </body>
 </html>
