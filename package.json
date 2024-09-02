@@ -1,16 +1,16 @@
 {
-  "name": "buildfireplugin",
+  "name": "punchCardPlugin",
   "version": "0.0.1",
   "description": "template for a buildfire plugin using gulp",
   "main": "index.js",
   "scripts": {
-    "build": "gulp && cd ../ && rm -rf <pluginName>.zip && zip -r <pluginName>.zip <pluginName>_release && rm -rf <pluginName>_release"
+    "build": "gulp && cd ../ && rm -rf punchCardPlugin.zip && zip -r punchCardPlugin.zip punchCardPlugin_release && rm -rf punchCardPlugin_release"
   },
-  "author": "Mahmoud AlSharif",
+  "author": "Plugin Team",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "http://link-to-your-git-repo.com"
+    "url": "https://github.com/BuildFire/friendReferralPlugin"
   },
   "browserslist": [
     "last 2 versions",
@@ -23,6 +23,7 @@
     "cssnano": "^6.0.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.29.1",
     "fancy-log": "^2.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -35,6 +36,7 @@
     "gulp-prettier": "^4.0.0",
     "gulp-print": "^5.0.2",
     "gulp-terser": "^2.1.0",
+    "postcss": "^8.4.38",
     "rimraf": "^5.0.1"
   }
 }

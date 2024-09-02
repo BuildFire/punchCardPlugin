@@ -1,11 +1,27 @@
 {
-  "extends": ["eslint:recommended", "airbnb-base"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base"
+  ],
   "rules": {
-    "semi": [2, "always"]
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
+    "max-classes-per-file": 0,
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ]
   },
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "env": {
     "browser": true,
@@ -14,7 +30,23 @@
   },
   "globals": {
     "buildfire": true,
-    "tinymce": true,
-    "mdc": true
+    "UserCodeSequence": true,
+    "UserCodeSequences": true,
+    "Setting": true,
+    "Settings": true,
+    "Customer": true,
+    "Customers": true,
+    "Transaction": true,
+    "Transactions": true,
+    "widgetAppState": true,
+    "CustomerController": true,
+    "TransactionController": true,
+    "AuthManager": true,
+    "EmployeeController": true,
+    "utils": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "expect": true
   }
 }

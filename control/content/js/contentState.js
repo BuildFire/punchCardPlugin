@@ -1,0 +1,3 @@
+const contentState ={
+    settings: null,
+}

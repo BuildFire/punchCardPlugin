@@ -1,19 +1,63 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    <script src="../../../../scripts/buildfire.min.js"></script>
+    <script src="../../../../scripts/tinymce/tinymce.min.js"></script>
+    
+    <link rel="stylesheet" href="../../../../styles/control/bf-base.css"/>
+    <link rel="stylesheet" href="../../../../styles/helper.css" />
+    <link rel="stylesheet" href="../../../../styles/control/siteIcons-control.css" />
+    
+    
+    <!-- build:bundleCSSFiles  -->
+    <link rel="stylesheet" href="./style.css" />
+    <!-- endbuild -->
+    
+    <!-- build:bundleSharedJSFiles -->
+    <script src="../../widget/global/js/models/UserCodeSequence.js"></script>
+    <script src="../../widget/global/js/models/Setting.js"></script>
+    <script src="../../widget/global/js/repositories/UserCodeSequences.js"></script>
+    <script src="../../widget/global/js/repositories/Settings.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleJSFiles  -->
+    <script src="./js/contentState.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/index.js"></script>
+    <!-- endbuild -->
 
-	<!-- JS -->
-	<script src="../../../../scripts/buildfire.js"></script>
-
-	<!--
-	<script src="../../../../scripts/angular/angular.min.js"></script>
-	<script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
-	<script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
-	-->
 </head>
 <body>
-<span>Content - Hello, world!</span>
+
+<!-- Start Introduction WYSIWYG Section -->
+<div class="margin-bottom-thirty">
+    <h1 class="section-title">Introduction</h1>
+   
+    <textarea class="hidden" id="introductionWYSIWYGContent" name="introContent"></textarea>
+</div>
+<div class="empty-state hidden" id="introLoadingScreen"></div>
+<!-- End Introduction WYSIWYG Section -->
+
+<div>
+    <div class="sub-page">
+        <div class="sub-page-body">
+            <h1 class="section-title">Card Details</h1>
+            <div class="form-group main clearfix">
+                <div class="col-md-3 pull-left padding-left-zero">
+                    <label class="required-label" for="item-details-title">Reward Name<span class="required"> *</span>
+                    </label>
+                </div>
+                <div class="col-md-9 pull-right padding-right-zero">
+                    <input type="text" class="form-control" required maxlength="100" id="item-details-title"  placeholder="" />
+                    <div class="margin-top-ten text-danger hidden" id="item-title-error">Required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

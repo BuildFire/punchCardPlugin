@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8" />
-
-	<!-- JS -->
-	<script src="../../../scripts/buildfire.js"></script>
-
-	<!-- build:bundleJSFiles  -->
-	<script src="./global/js/models/Post.js"></script>
-	<script src="js/b.js"></script>
-	<!-- endbuild -->
-
-	<!-- build:bundleCSSFiles  -->
-	<link rel="stylesheet" type="text/css" href="css/a.css">
-	<!-- endbuild -->
-
-	<!--
-	<script src="../../../../scripts/angular/angular.min.js"></script>
-	<script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
-	<script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
-	-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../styles/components/fabSpeedDial/fabSpeedDial.css" />
+    
+    <script src="../../../scripts/buildfire.min.js"></script>
+    <script src="../../../scripts/buildfire/services/camera/barcodeScanner.js"></script>
+    <script src="../../../scripts/buildfire/components/fabSpeedDial/fabSpeedDial.js"></script>
+    
+    <!--build:bundleWidgetSharedJSFiles -->
+    <script src="./global/js/services/AuthManager.js"></script>
+    <script src="./global/js/models/Setting.js"></script>
+    <script src="./global/js/models/UserCodeSequence.js"></script>
+    <script src="./global/js/models/Customer.js"></script>
+    <script src="./global/js/models/Transaction.js"></script>
+    <script src="./global/js/repositories/Settings.js"></script>
+    <script src="./global/js/repositories/UserCodeSequences.js"></script>
+    <script src="./global/js/repositories/Customers.js"></script>
+    <script src="./global/js/repositories/Transactions.js"></script>
+    <!--endbuild-->
+   
+    <!--build:bundleJSFiles -->
+    <script src="./js/widgetAppState.js"></script>
+    <script src="./js/pages/customer/CustomerController.js"></script>
+    <script src="./js/pages/employee/EmployeeController.js"></script>
+    <script src="./js/pages/transaction/TransactionController.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./widget.js"></script>
+   <!--endbuild-->
 </head>
 <body>
-<span>Widget - Hello, world!</span>
+Hello Widget
 </body>
 </html>
