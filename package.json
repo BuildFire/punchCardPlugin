@@ -10,7 +10,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BuildFire/friendReferralPlugin"
+    "url": "https://github.com/BuildFire/punchCardPlugin"
   },
   "browserslist": [
     "last 2 versions",
