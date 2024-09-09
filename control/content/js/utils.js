@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 const contentHelper = {
-
   toggleLoadingScreen(isLoading) {
     const loadingContainer = document.getElementById('introLoadingScreen');
     if (isLoading) {
