@@ -1,0 +1,239 @@
+{
+  "sections": {
+    "general": {
+      "title": "General",
+      "labels": {
+        "rewardsToRedeem": {
+          "title": "Rewards to Redeem",
+          "placeholder": "Rewards to Redeem",
+          "maxLength": 50,
+          "defaultValue": "Rewards to Redeem",
+          "required": true,
+          "inputType": "text"
+        },
+        "lifeTimeStamps": {
+          "title": "Lifetime stamps",
+          "placeholder": "Lifetime stamps",
+          "maxLength": 50,
+          "defaultValue": "Lifetime stamps",
+          "required": true,
+          "inputType": "text"
+        },
+        "lifeTimeRedeems": {
+          "title": "Lifetime redeems",
+          "placeholder": "Lifetime redeems",
+          "maxLength": 50,
+          "defaultValue": "Lifetime redeems",
+          "required": true,
+          "inputType": "text"
+        },
+        "history": {
+          "title": "History",
+          "placeholder": "History",
+          "maxLength": 40,
+          "defaultValue": "History",
+          "required": true,
+          "inputType": "text"
+        },
+        "confirmBtn": {
+          "title": "Confirm Button",
+          "placeholder": "Confirm",
+          "maxLength": 40,
+          "defaultValue": "Confirm",
+          "required": true,
+          "inputType": "text"
+        },
+        "modalConfirmBtn": {
+          "title": "Modal Confirm Button",
+          "placeholder": "Confirm",
+          "maxLength": 40,
+          "defaultValue": "Confirm",
+          "required": true,
+          "inputType": "text"
+        },
+        "cancel": {
+          "title": "Modal Cancel Button",
+          "placeholder": "Cancel",
+          "maxLength": 40,
+          "defaultValue": "Cancel",
+          "required": true,
+          "inputType": "text"
+        },
+        "modalDescription" : {
+          "title": "Modal Description",
+          "placeholder": "Please enter the unique User ID found below the QR code.",
+          "maxLength": 100,
+          "defaultValue": "Please enter the unique User ID found below the QR code.",
+          "required": true,
+          "inputType": "text"
+        },
+        "enterUserId" : {
+          "title": "Enter User Id",
+          "placeholder": "Enter User Id",
+          "maxLength": 40,
+          "defaultValue": "Enter User Id",
+          "required": true,
+          "inputType": "text"
+        },
+        "userId" : {
+          "title": "User Id",
+          "placeholder": "User Id",
+          "maxLength": 25,
+          "defaultValue": "User Id",
+          "required": true,
+          "inputType": "text"
+        },
+
+        "addStamps": {
+          "title": "Add Stamps",
+          "placeholder": "Add Stamps",
+          "maxLength": 40,
+          "defaultValue": "Add Stamps",
+          "required": true,
+          "inputType": "text"
+        },
+        "availableRewards": {
+          "title": "Available Rewards",
+          "placeholder": "Available Rewards",
+          "maxLength": 40,
+          "defaultValue": "Available Rewards",
+          "required": true,
+          "inputType": "text"
+        },
+        "today": {
+          "title": "Today",
+          "placeholder": "Today",
+          "maxLength": 40,
+          "defaultValue": "Today",
+          "required": true,
+          "inputType": "text"
+        },
+        "yesterday": {
+          "title": "Yesterday",
+          "placeholder": "Yesterday",
+          "maxLength": 40,
+          "defaultValue": "Yesterday",
+          "required": true,
+          "inputType": "text"
+        },
+        "stamps": {
+          "title": "Stamps",
+          "placeholder": "Stamps",
+          "maxLength": 30,
+          "defaultValue": "Stamps",
+          "required": true,
+          "inputType": "text"
+        },
+        "stampsAdded": {
+          "title": "Stamps Added",
+          "placeholder": "Stamps Added",
+          "maxLength": 30,
+          "defaultValue": "Stamps Added",
+          "required": true,
+          "inputType": "text"
+        },
+        "rewardEarned": {
+          "title": "Reward Earned",
+          "placeholder": "Reward Earned",
+          "maxLength": 30,
+          "defaultValue": "Reward Earned",
+          "required": true,
+          "inputType": "text"
+        },
+        "rewardsEarned": {
+          "title": "Rewards Earned",
+          "placeholder": "Rewards Earned",
+          "maxLength": 30,
+          "defaultValue": "Rewards Earned",
+          "required": true,
+          "inputType": "text"
+        },
+        "rewardRedeemed": {
+          "title": "Reward Redeemed",
+          "placeholder": "Reward Redeemed",
+          "maxLength": 30,
+          "defaultValue": "Reward Redeemed",
+          "required": true,
+          "inputType": "text"
+        },
+        "rewardsRedeemed": {
+          "title": "Rewards Redeemed",
+          "placeholder": "Rewards Redeemed",
+          "maxLength": 30,
+          "defaultValue": "Rewards Redeemed",
+          "required": true,
+          "inputType": "text"
+        },
+        "rewardsEmptyState": {
+          "title": "No rewards available yet",
+          "placeholder": "No rewards available yet",
+          "maxLength": 50,
+          "defaultValue": "No rewards available yet",
+          "required": true,
+          "inputType": "text"
+        },
+        "customerHistoryEmptyState": {
+          "title": "Customer History Empty State",
+          "placeholder": "Your activity history is currently empty. Start collecting stamps and redeeming rewards to fill your history.",
+          "maxLength": 100,
+          "defaultValue": "Your activity history is currently empty. Start collecting stamps and redeeming rewards to fill your history.",
+          "required": true,
+          "inputType": "text"
+        },
+        "employeeHistoryEmptyState": {
+          "title": "Employee History Empty State",
+          "placeholder": "No activity yet. The history of all stamps you've added and rewards you've approved will appear here.",
+          "maxLength": 100,
+          "defaultValue": "No activity yet. The history of all stamps you've added and rewards you've approved will appear here.",
+          "required": true,
+          "inputType": "text"
+        },
+        "userIdRequired": {
+          "title": "User id Required",
+          "placeholder": "User id is required",
+          "maxLength": 50,
+          "defaultValue": "User id is required",
+          "required": true,
+          "inputType": "text"
+        },
+        "invalidId": {
+          "title": "Invalid Id",
+          "placeholder": "Invalid ID. Please try again.",
+          "maxLength": 50,
+          "defaultValue": "Invalid ID. Please try again.",
+          "required": true,
+          "inputType": "text"
+        },
+        "userNotFound": {
+          "title": "User Not Found",
+          "placeholder": "User with this ID not found. Please try again.",
+          "maxLength": 50,
+          "defaultValue": "User with this ID not found. Please try again.",
+          "required": true,
+          "inputType": "text"
+        }
+      }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "labels": {
+        "newReward": {
+          "title": "Title",
+          "placeholder": "New Reward",
+          "maxLength": 50,
+          "defaultValue": "New Reward",
+          "required": true,
+          "inputType": "text"
+        },
+        "newRewardDescription": {
+          "title": "Description",
+          "placeholder": "Congratulations! You've earned your reward!",
+          "maxLength": 100,
+          "defaultValue": "Congratulations! You've earned your reward!",
+          "required": true,
+          "inputType": "text"
+        }
+      }
+    }
+  }
+}

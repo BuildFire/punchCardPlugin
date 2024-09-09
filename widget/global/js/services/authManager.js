@@ -14,13 +14,21 @@ const AuthManager = {
   set isEmployee(isEmployee) {
     AuthManager._isEmployee = isEmployee;
   },
+  refreshCurrentUser() {
+    return new Promise((resolve) => {
+      buildfire.auth.getCurrentUser((err, user) => {
+        AuthManager.currentUser = err || !user ? null : user;
+        resolve();
+      });
+    });
+  },
   getUserPermission() {
     return new Promise((resolve) => {
       buildfire.auth.getCurrentUser((err, user) => {
-        this.currentUser = user;
+        AuthManager.currentUser = user;
         const { appId } = buildfire.getContext();
-        const userTags = user.tags && user.tags[appId] ? user.tags[appId].map((t) => t.tagName) : [];
-        if (widgetAppState.settings.employeesPermissions.some((p) => userTags.includes(p))) {
+        const userTags = user?.tags && user.tags[appId] ? user.tags[appId].map((t) => t.tagName) : [];
+        if (widgetAppState.settings.employeesPermissions.some((p) => userTags.includes(p.value))) {
           AuthManager.isEmployee = true;
         }
         resolve();
@@ -39,4 +47,13 @@ const AuthManager = {
       });
     });
   },
+  getUserProfilePicture(userId) {
+    return buildfire.auth.getUserPictureUrl({ userId }, (err, user) => {
+      if (err) {
+        return err;
+      }
+      return user;
+    });
+  },
+
 };

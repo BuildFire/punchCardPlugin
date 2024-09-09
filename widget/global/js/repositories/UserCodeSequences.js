@@ -5,7 +5,7 @@ class UserCodeSequences {
      * @returns {string}
      */
   static get TAG() {
-    return 'test6';
+    return 'sequenceCollection';
   }
 
   /**

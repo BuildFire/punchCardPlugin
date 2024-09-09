@@ -9,13 +9,13 @@
       "enabled": true
     },
     "design": {
-      "enabled": false
+      "enabled": true
     },
     "settings": {
       "enabled": true
     },
     "language": {
-      "enabled": false,
+      "enabled": true,
       "languageJsonPath": "resources/languages.json"
     },
     "customTabs": [
@@ -24,12 +24,16 @@
         "url": "/design/index.html"
       },
       {
+        "title": "History",
+        "url": "/transaction/index.html"
+      },
+      {
         "title": "Tests",
         "url": "/tests/index.html?random=false&stopOnSpecFailure=true"
       }
     ],
     "cssInjection": {
-      "enabled": false,
+      "enabled": true,
       "layouts": [
         {
           "name": "Layout 1",
@@ -40,6 +44,6 @@
     }
   },
   "keywords": "Loyalty program, digital rewards, punch card, customer retention, loyalty points, rewards system, mobile stamping, virtual punch card, purchase tracking, incentive program, mobile loyalty, points accumulation, customer engagement, redeemable points, retail rewards",
-  "features": [],
+  "features" : [{"name" : "BarCodeScanner"}],
   "languages": ["en"]
 }

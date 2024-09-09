@@ -17,6 +17,9 @@
     <script src="../../../../scripts/buildfire/components/control/tagsInput/tagsInput.min.js"></script>
     <link rel="stylesheet" href="../../../../styles/control/bf-base.css"/>
     
+    <!-- build:bundleCPSharedJSFiles -->
+    <script src="../cpShared/index.js"></script>
+    <!-- endbuild -->
     
     <!-- build:bundleSharedJSFiles -->
     <script src="../../widget/global/js/models/Setting.js"></script>
@@ -31,16 +34,15 @@
 
 <body>
 
-<div class="referral-code-container">
+<div class="setting-container">
     <label class="tooltip-container col-md-5">Allow to Approve Rewards
         <span class="btn-info-icon btn-primary">
-        <span class="cp-tooltip">
-       tooltip text
+            <span class="cp-tooltip">Select who is allowed to add stamps and approve awards.</span>
         </span>
-      </span>
     </label>
     <div class="tags-input-container w-100">
-        <div class="w-100" id="customTagsInputContainer"></div></div>
+        <div class="w-100" id="customTagsInputContainer"></div>
+    </div>
 </div>
 
 </body>

@@ -11,8 +11,13 @@
     
     
     <!-- build:bundleSharedJSFiles -->
+    <script src="../../widget/global/js/services/authManager.js"></script>
     <script src="../../widget/global/js/models/Setting.js"></script>
     <script src="../../widget/global/js/repositories/Settings.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleCPSharedJSFiles -->
+    <script src="../cpShared/index.js"></script>
     <!-- endbuild -->
     
     <!-- build:bundleJSFiles  -->
@@ -21,7 +26,7 @@
 
 </head>
 <body>
-<div id="background"></div>
-
+<div id="stampedImage" class="padding-bottom-thirty"></div>
+<div id="unStampedImage"></div>
 </body>
 </html>

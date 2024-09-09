@@ -5,7 +5,7 @@ class Customers {
      * @returns {string}
      */
   static get TAG() {
-    return 'test6';
+    return 'customers';
   }
 
   /**
@@ -15,7 +15,7 @@ class Customers {
 
   static search(options = {}) {
     return new Promise((resolve, reject) => {
-      buildfire.userData.search(options, Customers.TAG, (err, result) => {
+      buildfire.publicData.search(options, Customers.TAG, (err, result) => {
         if (err) return reject(err);
         const data = result.map((record) => {
           record.data.id = record.id;
@@ -34,7 +34,7 @@ class Customers {
   static save(data) {
     return new Promise((resolve, reject) => {
       data.customerId = AuthManager.currentUser.userId;
-      buildfire.userData.insert(
+      buildfire.publicData.insert(
         new Customer(data).toJSON(),
         Customers.TAG,
         (err, res) => {
@@ -47,7 +47,7 @@ class Customers {
 
   static update(id, data) {
     return new Promise((resolve, reject) => {
-      buildfire.userData.update(
+      buildfire.publicData.update(
         id,
         data,
         Customers.TAG,

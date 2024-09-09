@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 class Transactions {
   static get TAG() {
-    return 'transaction_test6';
+    return 'transactions';
   }
 
   static search(options = {}) {
     return new Promise((resolve, reject) => {
-      buildfire.userData.search(
+      buildfire.publicData.search(
         { ...options, recordCount: true },
         Transactions.TAG,
         (err, result) => {
@@ -23,7 +23,7 @@ class Transactions {
 
   static save(data) {
     return new Promise((resolve, reject) => {
-      buildfire.userData.insert(
+      buildfire.publicData.insert(
         new Transaction(data).toJSON(),
         Transactions.TAG,
         (err, res) => {
@@ -37,7 +37,7 @@ class Transactions {
   static bulkInsert(data) {
     return new Promise((resolve, reject) => {
       const transactions = data.map((item) => new Transaction(item).toJSON());
-      buildfire.userData.bulkInsert(
+      buildfire.publicData.bulkInsert(
         transactions,
         Transactions.TAG,
         (err, res) => {

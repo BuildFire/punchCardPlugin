@@ -5,7 +5,7 @@ const contentHelper = {
     const loadingContainer = document.getElementById('introLoadingScreen');
     if (isLoading) {
       loadingContainer.classList.remove('hidden');
-      loadingContainer.innerHTML = '<h5>Loading...</h5>';
+      loadingContainer.innerHTML = '<h5><div class="loader"></div>Loading...</h5>';
     } else {
       loadingContainer.classList.add('hidden');
     }

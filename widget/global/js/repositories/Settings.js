@@ -5,7 +5,7 @@ class Settings {
      * @returns {string}
      */
   static get TAG() {
-    return 'test6';
+    return 'settings';
   }
 
   /**
@@ -17,13 +17,12 @@ class Settings {
       buildfire.datastore.get(Settings.TAG, (err, res) => {
         if (err) return reject(err);
         if (!res || !res.data || !Object.keys(res.data).length) {
-          UserCodeSequences.initializeCodeSequence();
           const data = new Setting().toJSON();
           Settings.save(data);
-          resolve(data);
+          resolve({ data, init: true });
         } else {
           const data = new Setting(res.data).toJSON();
-          resolve(data);
+          resolve({ data, init: false });
         }
       });
     });
@@ -36,6 +35,8 @@ class Settings {
      */
   static save(data) {
     return new Promise((resolve, reject) => {
+      data.createdBy = data.createdBy || AuthManager.currentUser._id || null;
+      data.lastUpdatedBy = AuthManager.currentUser._id || null;
       buildfire.datastore.save(data, Settings.TAG, (err, res) => {
         if (err) return reject(err);
         return resolve(new Setting(res.data).toJSON());

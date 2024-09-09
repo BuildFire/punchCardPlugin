@@ -1,36 +1,37 @@
 // eslint-disable-next-line no-unused-vars
 const TransactionController = {
-  async getCustomerTransaction() {
+  async getCustomerTransaction(options = {}) {
     try {
-      const { currentUser } = AuthManager;
-      const transactions = await Transactions.search({
-        filter: { '_buildfire.index.array1.string1': `customerId_${currentUser.userId}` },
-      });
-      console.log(transactions);
+      return await Transactions.search(options);
     } catch (error) {
       console.error('CustomerController.getTransactions():', error);
+      return error;
     }
   },
-  async  getEmployeeTransaction() {
+  async  getEmployeeTransaction(options = {}) {
     try {
       const { currentUser } = AuthManager;
-      const transactions = await Transactions.search({
+      const searchOptions = {
         filter: { '_buildfire.index.array1.string1': `employeeId_${currentUser.userId}` },
-      });
-      return transactions.data.filter(
-        (transaction) => transaction.action === Transaction.Action.STAMPS_CHANGE
-          || transaction.action === Transaction.Action.REDEEMED,
-      );
+        ...options,
+      };
+      return await Transactions.search(searchOptions);
     } catch (error) {
       return [];
     }
   },
 
   addTransactions(data) {
-    if (data.length === 1) Transactions.save(data[0]).then((res) => {  });
-    else {
-      Transactions.bulkInsert(data).then((res) => {});
-    }
+    return new Promise((resolve, reject) => {
+      if (data.length === 1) {
+        Transactions.save(data[0])
+          .then((res) => resolve(res))
+          .catch((error) => reject(error));
+      } else {
+        Transactions.bulkInsert(data)
+          .then((res) => resolve(res))
+          .catch((error) => reject(error));
+      }
+    });
   },
-
 };

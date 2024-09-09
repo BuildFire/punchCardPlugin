@@ -38,7 +38,10 @@ class Customer {
       updatedBy: this.updatedBy,
       isActive: this.isActive,
       _buildfire: {
-        index: { string1: this.customerId },
+        index: {
+          string1: this.customerId,
+          array1: [{ string1: `customerUserId_${this.customerUserId}` }],
+        },
       },
     };
   }

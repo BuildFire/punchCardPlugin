@@ -1,11 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 class Setting {
   constructor(data = {}) {
-    this.design = data.design || {};
+    this.design = data.design || {
+      stampedImageUrl: data.stampedImageUrl || '',
+      unstampedImageUrl: data.unstampedImageUrl || '',
+    };
     this.introductionWYSIWYG = data.introductionWYSIWYG || '';
-    this.rewardName = data.rewardName || 'Reward';
+    this.rewardName = data.rewardName || 'Free Coffee';
     this.cardSize = data.cardSize || 10;
-    this.employeesPermissions = data.employeesPermissions || ['admin'];
+    this.employeesPermissions = data.employeesPermissions || [];
     this.createdOn = data.createdOn || new Date();
     this.createdBy = data.createdBy || null;
     this.lastUpdatedOn = data.lastUpdatedOn || new Date();

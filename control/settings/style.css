@@ -61,7 +61,7 @@
 .tooltip-container .btn-info-icon .cp-tooltip::before {
     content: "";
     position: absolute;
-    top: 10%;
+    top: 48%;
     left: -5px;
     transform: rotate(90deg) translate(-50%);
     margin-left: -5px;
@@ -82,7 +82,7 @@
 }
 
 
-.referral-code-container{
+.setting-container{
     display: flex;
     align-items: flex-start;
 }

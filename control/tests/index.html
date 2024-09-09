@@ -20,26 +20,42 @@
     
     <!-- build:bundleSharedJSFiles -->
     <script src="../../widget/js/widgetAppState.js"></script>
-    <script src="../../widget/global/js/services/AuthManager.js"></script>
+    <script src="../../widget/global/js/services/analytics/const.js"></script>
+    <script src="../../widget/global/js/services/analytics/analyticsManager.js"></script>
+    <script src="../../widget/global/js/services/authManager.js"></script>
     <script src="../../widget/global/js/models/UserCodeSequence.js"></script>
     <script src="../../widget/global/js/models/Setting.js"></script>
     <script src="../../widget/global/js/models/Customer.js"></script>
+    <script src="../../widget/global/js/models/Transaction.js"></script>
     <script src="../../widget/global/js/repositories/UserCodeSequences.js"></script>
     <script src="../../widget/global/js/repositories/Settings.js"></script>
     <script src="../../widget/global/js/repositories/Customers.js"></script>
+    <script src="../../widget/global/js/repositories/Transactions.js"></script>
+    <script src="../../widget/js/utils/userName.js"></script>
+    <script src="../../widget/js/utils/date.js"></script>
+    <script src="../../widget/js/utils/handleCPSync.js"></script>
+    <script src="../../widget/js/utils/string.js"></script>
+    <script src="../../widget/js/utils/resizeImage.js"></script>
+    <script src="../../widget/js/notificationManager.js"></script>
+    <script src="../../widget/js/pages/customer/CustomerController.js"></script>
+    <script src="../../widget/js/pages/transaction/TransactionController.js"></script>
+    <script src="../content/js/contentState.js"></script>
+    <script src="../content/js/contentController.js"></script>
     <!-- endbuild -->
     
     
+    
     <!-- build:bundleTestsJSFiles  -->
+    <script src="./spec/transaction.spec.js"></script>
+    <script src="./spec/customer.spec.js"></script>
     <script src="./spec/settings.spec.js"></script>
+    <script src="./spec/userCodeSequence.spec.js"></script>
     <!-- endbuild -->
     
     <title>Tests</title>
 </head>
 
 <body>
-<div>Tests</div>
-
 </body>
 
 

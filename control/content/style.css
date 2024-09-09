@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -7,6 +7,7 @@
 .hidden {
     display: none !important;
 }
+
 .required {
     color: red;
 }
@@ -20,6 +21,7 @@
     border-radius: 0.25rem;
     background-color: var(--c-gray1);
     border: 1px solid var(--c-gray3);
+    margin-bottom: 30px;
 }
 
 .empty-state h5 {
@@ -29,14 +31,25 @@
     -webkit-text-stroke: 0;
 }
 
+.loader {
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 3px solid var(--c-primary);
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin: 0 10px;
+}
+
 /* tooltip */
 .tooltip-container {
-    display: flex;
-    align-items: center;
     margin-right: 13px !important;
     gap: 0.25rem;
     position: relative;
 }
+
 .tooltip-container .btn-info-icon {
     display: flex;
     align-items: center;
@@ -52,6 +65,7 @@
     top: 3px;
     left: 100%;
 }
+
 .tooltip-container .btn-info-icon:after {
     content: 'i';
     font-weight: 400;
@@ -61,6 +75,7 @@
     top: auto !important;
     height: 100%;
 }
+
 .tooltip-container .btn-info-icon .cp-tooltip {
     pointer-events: none;
     background-color: rgba(0, 0, 0, .80);
@@ -68,7 +83,7 @@
     padding: 8px;
     border-radius: 4px;
     position: absolute;
-    left: -100px;
+    left: -50px;
     bottom: 25px;
     cursor: auto;
     font-size: 12px;
@@ -81,32 +96,55 @@
     z-index: 100;
     font-weight: 400;
     line-height: 18px;
-    font-family: 'Conv_apercu_regular','Helvetica','Sans-Serif','Arial';
+    font-family: 'Conv_apercu_regular', 'Helvetica', 'Sans-Serif', 'Arial';
     -webkit-text-stroke: 0;
 }
+
 .top-cp-tooltip {
     top: 0;
 }
+
 .bottom-cp-tooltip {
     bottom: 0;
 }
+
 .tooltip-container .btn-info-icon .cp-tooltip::before {
     content: "";
     position: absolute;
     top: 100%;
-    left: 51%;
+    left: 25%;
     border-width: 5px;
     border-style: solid;
     border-color: rgba(0, 0, 0, .80) transparent transparent transparent;
 }
+
 .top-cp-tooltip::before {
     top: 10px !important;
 }
+
 .bottom-cp-tooltip::before {
     bottom: 0 !important;
     top: unset !important;
 }
+
 .tooltip-container .btn-info-icon:hover .cp-tooltip {
     opacity: 1;
     transform: scale(1);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown .chevron {
+    content: '';
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+    color: #333;
+    position: absolute;
+    right: 10px;
+    top: 60%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }

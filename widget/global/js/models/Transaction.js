@@ -1,5 +1,6 @@
 class Transaction {
   constructor(data = {}) {
+    this.id = data.id;
     this.action = data.action; // ENUM
     this.customerId = data.customerId || null;
     this.employeeId = data.employeeId || null;
@@ -23,6 +24,7 @@ class Transaction {
          */
   toJSON() {
     return {
+      id: this.id,
       action: this.action,
       customerId: this.customerId,
       employeeId: this.employeeId,

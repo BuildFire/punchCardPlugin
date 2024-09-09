@@ -70,6 +70,10 @@ const jsTask = ({ src, dest }) => gulpSrc(src, { base: '.' })
   .pipe(concat('scripts.min.js'))
   .pipe(gulpDest(`${destinationPath}${dest}`));
 
+const libTask = () => gulpSrc('widget/lib/**/*', { base: '.' })
+  .pipe(print())
+  .pipe(gulpDest(destinationPath));
+
 /**
  * CSS Tasks
  * @description A named function for each CSS task, used with watch and build
@@ -77,6 +81,10 @@ const jsTask = ({ src, dest }) => gulpSrc(src, { base: '.' })
 const widgetCSS = () => cssTask({ src: 'widget/style/**/*.css', dest: '/widget' });
 const controlContentCSS = () => cssTask({ src: 'control/content/**/*.css', dest: '/control/content' });
 const controlSettingsCSS = () => cssTask({ src: 'control/settings/**/*.css', dest: '/control/settings' });
+const controlTransactionCSS = () => cssTask({ src: 'control/transaction/**/*.css', dest: '/control/transaction' });
+
+const controlDesignCSS = () => cssTask({ src: 'control/design/**/*.css', dest: '/control/design' });
+
 const widgetCSSLayouts = () => gulpSrc([
   'widget/layouts/*.css',
 ], { base: '.' })
@@ -97,9 +105,9 @@ const sharedJS = () => jsTask({
 });
 const widgetJS = () => jsTask({
   src: [
-    'widget/js/pages/customer/CustomerController.js',
-    'widget/js/pages/employee/EmployeeController.js',
-    'widget/js/widgetAppState.js',
+    'widget/js/pages/**/*.js',
+    'widget/js/utils/*.js',
+    'widget/js/*.js',
     'widget/widget.js',
   ],
   dest: '/widget',
@@ -108,6 +116,12 @@ const widgetJS = () => jsTask({
 const controlContentJS = () => jsTask({ src: 'control/content/**/*.js', dest: '/control/content' });
 // const controlSharedJS = () => jsTask({ src: 'control/cpShared/*.js', dest: '/control/cpShared' });
 const controlSettingsJS = () => jsTask({ src: 'control/settings/**/*.js', dest: '/control/settings' });
+const controlTransactionJS = () => jsTask({ src: 'control/transaction/**/*.js', dest: '/control/transaction' });
+const controlSharedJS = () => jsTask({ src: 'control/cpShared/*.js', dest: '/control/cpShared' });
+
+
+const controlDesignJS = () => jsTask({ src: 'control/design/**/*.js', dest: '/control/design' });
+
 const controlTestJS = () => jsTask({ src: 'control/tests/**/*.js', dest: '/control/tests' });
 
 /**
@@ -193,7 +207,7 @@ const jasmineProjectTask = () => gulpSrc([
  * Images Task
  * @description Process plugin images directory
  */
-const imagesTask = () => gulpSrc(['**/.images/**'], { base: '.' })
+const imagesTask = () => gulpSrc(['**/images/**'], { base: '.' })
   .pipe(print())
   .pipe(imagemin())
   .pipe(gulpDest(destinationPath));
@@ -208,6 +222,11 @@ exports.default = series(
     widgetCSS,
     controlContentCSS,
     controlSettingsCSS,
+    controlTransactionCSS,
+    controlDesignCSS,
+    controlTransactionJS,
+    controlDesignJS,
+    controlSharedJS,
     sharedJS,
     widgetJS,
     controlTestJS,
@@ -216,5 +235,6 @@ exports.default = series(
     resourcesTask,
     imagesTask,
     jasmineProjectTask,
+    libTask,
   ),
 );

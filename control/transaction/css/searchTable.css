@@ -1,0 +1,94 @@
+thead, tbody tr {
+    display: table;
+    width: min-content;
+    table-layout: fixed; /* even columns width , fix width of table too*/
+    border-bottom: 1px solid var(--c-gray3);
+    color: var(--c-info);
+    height: 54px;
+}
+
+thead, tbody tr:last-child {
+    margin-bottom: 0.25rem !important;
+}
+
+th {
+    line-height: 26px;
+    vertical-align: top;
+    -webkit-text-stroke: 0;
+    padding: 0px 8px 16px 8px !important;
+}
+
+td {
+    padding: 8px !important;
+    -webkit-text-stroke: 0;
+}
+
+th > span {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+td:first-child {
+    border-left: 1px solid var(--c-gray3);
+}
+
+td:last-child {
+    border-right: 1px solid var(--c-gray3);
+}
+
+td.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+}
+
+tbody {
+    height: 90%;
+    display: block;
+    overflow: auto;
+    width: min-content;
+}
+
+table tbody tr {
+    background-color: transparent !important;
+}
+
+table tbody tr td {
+    border-top: none !important;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.editColumn, .deleteColumn {
+    width: 50px;
+    text-align: center;
+}
+
+.actionsColumn {
+    width: 125px;
+    text-align: right;
+}
+
+.btn-primary {
+    margin-bottom: 16px;
+}
+
+.search-table-actions button {
+    background: none;
+    font-size: 18px;
+    aspect-ratio: 1;
+}
+
+.search-table-actions button.bi {
+    font-size: 20px !important;
+}
+
+.search-table-actions button.primary:hover {
+    background-color: buttonface;
+    color: var(--c-primary);
+}
+
+.search-table-actions button.danger:hover {
+    background-color: buttonface;
+    color: var(--c-danger);
+}
