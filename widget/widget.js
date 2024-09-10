@@ -5,10 +5,9 @@ const initApp = async () => {
     const { settingData } = await Settings.get();
      widgetAppState.settings = settingData;
     await AuthManager.getUserPermission();
-    AuthManager.isEmployee = true;
     if (AuthManager.isEmployee) {
-      widgetAppRouter.init();
       EmployeeView.init();
+      widgetAppRouter.init();
     } else {
       CustomerView.init();
       widgetAppRouter.init();
