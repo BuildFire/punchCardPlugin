@@ -37,28 +37,23 @@ const widgetAppRouter = {
 
   init() {
     buildfire.history.onPop((breadcrumbs) => {
-      if (!breadcrumbs.options.pageId) {
-        if (breadcrumbs.options.pluginData && breadcrumbs.options.pluginData.pushToHistory === false) {
-          if (!AuthManager.isEmployee) {
-            if (this.currentPage) {
-              widgetAppRouter.goToPage('home');
-              return;
-            }
-          } else {
-            if (this.currentPage) {
-              widgetAppRouter.goToPage('employeeTransaction');
-              return;
-            }
-          }
-        }
-        buildfire.navigation.goBack();
+      if (this.currentPage === 'customerTransaction') {
+        widgetAppRouter.back();
+        widgetAppRouter.goToPage('home');
+        widgetAppRouter.currentPage = null;
         return;
+      }
+      if (AuthManager.isEmployee) {
+        if (this.currentPage === 'home') {
+          widgetAppRouter.back();
+          widgetAppRouter.goToPage('employeeTransaction');
+          return;
+        }
       }
       this.currentPage = breadcrumbs.options.pageId;
       if (breadcrumbs.options.pageId === 'employeeTransaction') {
         CustomerView.reset();
       }
-      widgetAppRouter.goToPage(breadcrumbs.options.pageId);
     });
   },
 };

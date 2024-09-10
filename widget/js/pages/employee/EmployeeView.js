@@ -128,6 +128,8 @@ const EmployeeView = {
       widgetAppState.currentCustomer.userName = userName(userData);
       widgetAppState.currentCustomer.imageUrl = userData?.imageUrl ? userData.imageUrl : 'https://app.buildfire.com/app/media/avatar.png';
       CustomerView.init();
+      widgetAppRouter.push({ pageId: 'home', pageName: 'home', name: 'home' });
+
     } catch (error) {
       throw error;
     }
@@ -137,6 +139,6 @@ const EmployeeView = {
     this._openScanner();
     TransactionView.init();
     this._initFabSpeedDial();
-    widgetAppRouter.push({ pageId: 'employeeTransaction', pageName: 'employeeTransaction', name: 'employeeTransaction' });
+    widgetAppRouter.goToPage('employeeTransaction');
   },
 };

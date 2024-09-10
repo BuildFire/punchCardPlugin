@@ -33,7 +33,6 @@ buildfire.deeplink.onUpdate((deeplinkData) => {
   const deeplinkPayload = parseDeeplinkData(deeplinkData);
   if (deeplinkPayload && deeplinkPayload.earned) {
     if (widgetAppRouter.currentPage === 'home') {
-      widgetAppRouter.goToPage('customerTransaction');
       widgetAppRouter.push({ pageId: 'customerTransaction', pageName: 'customerTransaction', name: 'history' });
       TransactionView._initCustomerListView();
     } else {

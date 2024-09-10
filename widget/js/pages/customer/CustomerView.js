@@ -41,6 +41,9 @@ const CustomerView = {
   removedStamps: 0,
   _initUiElements() {
     const { isEmployee } = AuthManager;
+    if (this._uiElement.incrementButton){
+      this.reset();
+    }
     this._uiElement.cardName = document.getElementById('cardName');
     this._uiElement.historyIcon = document.getElementById('historyIcon');
     if (!isEmployee) {
@@ -79,6 +82,7 @@ const CustomerView = {
       this.newStamps = 0;
       this.removedStamps = 0;
     }
+
 
     this._uiElement.historyIcon.removeEventListener('click', this.openTransactionView);
 
@@ -288,6 +292,10 @@ const CustomerView = {
   },
   _initRewardList(rewardsLength = widgetAppState.currentCustomer.availableRewards.length) {
     const availableRewardList = document.getElementById('availableRewardList');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+
     availableRewardList.innerHTML = '';
 
     for (let i = 0; i < rewardsLength; i++) {
@@ -303,6 +311,9 @@ const CustomerView = {
       rewardItem.appendChild(checkbox);
 
       const checkboxInput = rewardItem.querySelector('input[type="checkbox"]');
+      if (i < checkedCount) {
+        checkboxInput.checked = true;
+      }
 
       checkboxInput.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -389,7 +400,8 @@ const CustomerView = {
       this._initUiElements();
       this._initValues();
       this._initRewardList();
+      this._updateConfirmButton();
     }
-    widgetAppRouter.push({ pageId: 'home', pageName: 'home', name: 'home' });
+    widgetAppRouter.goToPage('home');
   },
 };

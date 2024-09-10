@@ -12,7 +12,7 @@ const handleCPSync = {
         if (data.data.content || data.data.content === '') {
           widgetAppState.settings.introductionWYSIWYG = data.data.content;
         }
-        if (widgetAppRouter.currentPage !== 'home') return;
+        if (widgetAppRouter.currentPage) return;
         CustomerView._initListView();
         CustomerView._initValues();
       } else if (data.cmd === 'cardChanged') {
@@ -32,14 +32,14 @@ const handleCPSync = {
           widgetAppState.currentCustomer.imageUrl = user?.imageUrl ? user.imageUrl : 'https://app.buildfire.com/app/media/avatar.png';
         }
 
-        if (widgetAppRouter.currentPage !== 'home') return;
+        if (widgetAppRouter.currentPage) return;
         CustomerView.drawStamps(widgetAppState.settings.cardSize);
         if (AuthManager.isEmployee) {
           CustomerView._initRewardList();
         }
       } else if (data.cmd === 'designChanged') {
         widgetAppState.settings.design = data.data.design;
-        if (widgetAppRouter.currentPage !== 'home') return;
+        if (widgetAppRouter.currentPage) return;
         CustomerView.drawStamps(widgetAppState.settings.cardSize);
       }
     };
