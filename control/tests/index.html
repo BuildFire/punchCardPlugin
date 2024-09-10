@@ -8,18 +8,14 @@
     
     <link rel="stylesheet" href="../../Jasmine-Project/lib/jasmine.css">
     
-    <!-- build:bundleControlBFMinJS  -->
-    <script src="../../../../scripts/buildfire.js"></script>
-    <!-- endbuild -->
+    <script src="../../../../scripts/buildfire.min.js"></script>
     
     <script src="../../Jasmine-Project/lib/jasmine.js"></script>
     <script src="../../Jasmine-Project/lib/jasmine-html.js"></script>
     <script src="../../Jasmine-Project/lib/boot0.js"></script>
     <script src="../../Jasmine-Project/lib/boot1.js"></script>
     
-    
     <!-- build:bundleSharedJSFiles -->
-    <script src="../../widget/js/widgetAppState.js"></script>
     <script src="../../widget/global/js/services/analytics/const.js"></script>
     <script src="../../widget/global/js/services/analytics/analyticsManager.js"></script>
     <script src="../../widget/global/js/services/authManager.js"></script>
@@ -31,6 +27,10 @@
     <script src="../../widget/global/js/repositories/Settings.js"></script>
     <script src="../../widget/global/js/repositories/Customers.js"></script>
     <script src="../../widget/global/js/repositories/Transactions.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleSharedTestJSFiles -->
+    <script src="../../widget/js/widgetAppState.js"></script>
     <script src="../../widget/js/utils/userName.js"></script>
     <script src="../../widget/js/utils/date.js"></script>
     <script src="../../widget/js/utils/handleCPSync.js"></script>
@@ -42,7 +42,6 @@
     <script src="../content/js/contentState.js"></script>
     <script src="../content/js/contentController.js"></script>
     <!-- endbuild -->
-    
     
     
     <!-- build:bundleTestsJSFiles  -->

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const contentController = {
   timerDelay: null,
-  _saveWithDelay(delay = 500) {
+  _saveWithDelay() {
     clearTimeout(this.timerDelay);
     return new Promise((resolve, reject) => {
       this.timerDelay = setTimeout(() => {
@@ -11,7 +11,7 @@ const contentController = {
             console.error('Error in saveWithDelay:', error);
             reject(error);
           });
-      }, delay);
+      }, 500);
     });
   },
   initIntroWysiwyg() {
@@ -20,7 +20,7 @@ const contentController = {
       setup: (editor) => {
         editor.on('change keyUp', () => {
           contentState.settings.introductionWYSIWYG = editor.getContent();
-          this._saveWithDelay(500).then(() => {
+          this._saveWithDelay().then(() => {
             cpShared.syncWithWidget({
               cmd: 'contentChanged',
               data: { content: contentState.settings.introductionWYSIWYG },
@@ -35,14 +35,15 @@ const contentController = {
     });
   },
   async getSettings() {
-    const settingData = await Settings.get();
-    contentState.settings = settingData.data;
-    if (settingData.init) {
+    await AuthManager.refreshCurrentUser();
+    const { settingData, isNewInstance } = await Settings.get();
+    contentState.settings = settingData;
+    if (isNewInstance) {
       await UserCodeSequences.initializeCodeSequence();
       await AnalyticsManager.init();
     }
   },
-  async saveSettings(delay) {
-    await this._saveWithDelay(delay);
+  async saveSettings() {
+    await this._saveWithDelay();
   },
 };

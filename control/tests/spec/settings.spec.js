@@ -16,7 +16,7 @@ describe('Settings Repository', () => {
       introductionWYSIWYG: '',
       rewardName: 'Free Coffee',
       cardSize: 10,
-      employeesPermissions: [],
+      employeeTags: [],
       createdOn: new Date(),
       createdBy: null,
       lastUpdatedOn: new Date(),
@@ -25,11 +25,11 @@ describe('Settings Repository', () => {
   });
 
   it('should get settings data when data exists', (done) => {
-    const mockResponse = { data: new Setting().toJSON() };
+    const mockResponse = { settingData: new Setting().toJSON() };
     mockDatastore.get.and.callFake((tag, callback) => callback(null, mockResponse));
 
     Settings.get().then((data) => {
-      expect(data.data).toEqual(mockResponse.data);
+      expect(data.settingData).toEqual(mockResponse.settingData);
       done();
     });
   });
@@ -38,21 +38,19 @@ describe('Settings Repository', () => {
     const mockResponse = { data: {} };
     mockDatastore.get.and.callFake((tag, callback) => callback(null, mockResponse));
     mockDatastore.save.and.callFake((data, tag, callback) => callback(null, { data: new Setting(data).toJSON() }));
-    // spyOn(UserCodeSequences, 'initializeCodeSequence').and.returnValue(Promise.resolve());
 
-    Settings.get().then((data) => {
-      delete data.data.createdOn;
-      delete data.data.lastUpdatedOn;
+    Settings.get().then(({ settingData, isNewInstance }) => {
+      delete settingData.createdOn;
+      delete settingData.lastUpdatedOn;
       const expectedData = new Setting().toJSON();
       delete expectedData.createdOn;
       delete expectedData.lastUpdatedOn;
-      expect(data.data).toEqual(expectedData);
+      expect(settingData).toEqual(expectedData);
+      expect(isNewInstance).toBe(true);
       expect(mockDatastore.save).toHaveBeenCalled();
-    //  expect(UserCodeSequences.initializeCodeSequence).toHaveBeenCalled();
       done();
     });
   });
-
   it('should save settings data', (done) => {
     const mockData = new Setting().toJSON();
     const mockResponse = { data: mockData };
@@ -66,7 +64,7 @@ describe('Settings Repository', () => {
   });
 
   it('should save and retrieve settings data that matches the Setting model', (done) => {
-    const mockResponse = { data: new Setting(mockSettings).toJSON() };
+    const mockResponse = { settingData: new Setting(mockSettings).toJSON() };
     mockDatastore.get.and.callFake((tag, callback) => callback(null, mockResponse));
     mockDatastore.save.and.callFake((data, tag, callback) => callback(null, { data: new Setting(data).toJSON() }));
 
@@ -74,8 +72,8 @@ describe('Settings Repository', () => {
       expect(data).toEqual(mockSettings);
       expect(mockDatastore.save).toHaveBeenCalledWith(mockSettings, Settings.TAG, jasmine.any(Function));
 
-      Settings.get().then((data) => {
-        expect(data.data).toEqual(mockResponse.data);
+      Settings.get().then(({ settingData, isNewInstance }) => {
+        expect(settingData).toEqual(mockResponse.settingData);
         done();
       });
     });
@@ -84,7 +82,7 @@ describe('Settings Repository', () => {
 
 describe('Settings Controller', () => {
   beforeEach(() => {
-    spyOn(Settings, 'get').and.returnValue(Promise.resolve({ data: {}, init: true }));
+    spyOn(Settings, 'get').and.returnValue(Promise.resolve({ settingData: {}, isNewInstance: true }));
     spyOn(UserCodeSequences, 'initializeCodeSequence').and.returnValue(Promise.resolve());
   });
 

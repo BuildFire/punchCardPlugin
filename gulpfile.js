@@ -112,6 +112,16 @@ const widgetJS = () => jsTask({
   ],
   dest: '/widget',
 });
+const TestJS = () => jsTask({
+  src: [
+    'widget/js/pages/**/*.js',
+    'widget/js/utils/*.js',
+    'widget/js/*.js',
+    'control/content/js/contentState.js',
+    'control/content/js/contentController.js',
+  ],
+  dest: '/control/tests/shared',
+});
 
 const controlContentJS = () => jsTask({ src: 'control/content/**/*.js', dest: '/control/content' });
 // const controlSharedJS = () => jsTask({ src: 'control/cpShared/*.js', dest: '/control/cpShared' });
@@ -119,10 +129,17 @@ const controlSettingsJS = () => jsTask({ src: 'control/settings/**/*.js', dest: 
 const controlTransactionJS = () => jsTask({ src: 'control/transaction/**/*.js', dest: '/control/transaction' });
 const controlSharedJS = () => jsTask({ src: 'control/cpShared/*.js', dest: '/control/cpShared' });
 
-
 const controlDesignJS = () => jsTask({ src: 'control/design/**/*.js', dest: '/control/design' });
 
-const controlTestJS = () => jsTask({ src: 'control/tests/**/*.js', dest: '/control/tests' });
+const controlTestJS = () => jsTask({
+  src: [
+    'control/tests/spec/transaction.spec.js',
+    'control/tests/spec/customer.spec.js',
+    'control/tests/spec/settings.spec.js',
+    'control/tests/spec/userCodeSequence.spec.js',
+  ],
+  dest: '/control/tests',
+});
 
 /**
  * Lint Task
@@ -171,9 +188,8 @@ const htmlTask = () => gulpSrc([
     bundleJSFiles: `scripts.min.js?v=${new Date().getTime()}`,
     bundleCPSharedJSFiles: `../cpShared/scripts.min.js?v=${new Date().getTime()}`,
     bundleCSSFiles: `styles.min.css?v=${new Date().getTime()}`,
-    bundleControlBFMinJS: '../../../../scripts/buildfire.min.js',
     bundleTestsJSFiles: `scripts.min.js?v=${new Date().getTime()}`,
-
+    bundleSharedTestJSFiles: `./shared/scripts.min.js?v=${new Date().getTime()}`,
   }))
   .pipe(htmlmin({
     removeComments: true,
@@ -236,5 +252,6 @@ exports.default = series(
     imagesTask,
     jasmineProjectTask,
     libTask,
+    TestJS,
   ),
 );

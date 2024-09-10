@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-let settings = null;
-
+const designState = { settings: null };
 const initDesign = async () => {
   try {
     await AuthManager.refreshCurrentUser();
-    settings = await Settings.get();
+    const { settingData } = await Settings.get();
+    designState.settings = settingData;
   } catch (error) {
     console.error('Error in initDesign:', error);
   }
@@ -17,37 +17,37 @@ window.onload = async () => {
     const unStampedImage = new buildfire.components.images.thumbnail('#unStampedImage',
       { title: 'Un-stamped Image', dimensionsLabel: 'Recommended ratio: 1:1' });
 
-    stampedImage.loadbackground(settings.data.design.stampedImageUrl);
-    unStampedImage.loadbackground(settings.data.design.unstampedImageUrl);
+    stampedImage.loadbackground(designState.settings.design.stampedImageUrl);
+    unStampedImage.loadbackground(designState.settings.design.unstampedImageUrl);
 
     stampedImage.onChange = (imageUrl) => {
-      settings.data.design.stampedImageUrl = imageUrl;
-      Settings.save(settings.data).then(()=> {
-        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: settings.data.design } });
+      designState.settings.design.stampedImageUrl = imageUrl;
+      Settings.save(designState.settings).then(() => {
+        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: designState.settings.design } });
       });
     };
 
     unStampedImage.onChange = (imageUrl) => {
-      settings.data.design.unstampedImageUrl = imageUrl;
-      Settings.save(settings.data).then(() => {
-        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: settings.data.design } });
+      designState.settings.design.unstampedImageUrl = imageUrl;
+      Settings.save(designState.settings).then(() => {
+        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: designState.settings.design } });
       });
     };
 
     stampedImage.onDelete = () => {
-      settings.data.design.stampedImageUrl = '';
-      Settings.save(settings.data).then(() => {
-        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: settings.data.design } });
+      designState.settings.design.stampedImageUrl = '';
+      Settings.save(designState.settings).then(() => {
+        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: designState.settings.design } });
       });
     };
 
     unStampedImage.onDelete = () => {
-      settings.data.design.unstampedImageUrl = '';
-      Settings.save(settings.data).then(() => {
-        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: settings.data.design } });
+      designState.settings.design.unstampedImageUrl = '';
+      Settings.save(designState.settings).then(() => {
+        cpShared.syncWithWidget({ cmd: 'designChanged', data: { design: designState.settings.design } });
       });
     };
   }).catch((error) => {
-    throw error;
+    console.error(error);
   });
 };

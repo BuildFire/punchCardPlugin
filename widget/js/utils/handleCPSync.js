@@ -18,7 +18,7 @@ const handleCPSync = {
       } else if (data.cmd === 'cardChanged') {
         if (data.data.cardSize) {
           widgetAppState.settings.cardSize = data.data.cardSize;
-          const result = await CustomerController.getCustomerInfo(widgetAppState.currentCustomer.customerUserId,
+          const result = await CustomerController.getCustomerInfo(widgetAppState.currentCustomer.friendlyId,
             widgetAppState.settings.cardSize);
           if (result.currentStamps) {
             widgetAppState.currentCustomer.currentStamps = result.currentStamps;

@@ -90,23 +90,24 @@ const EmployeeView = {
         const secretKey = parts[1];
         if (secretKey !== widgetAppState.secretKey) {
           buildfire.dialog.toast({
-            message: 'Invalid QR code. Please try again.',
+            message: await getLanguage('general.invalidQRCode'),
           });
           return null;
         }
         if (!userId) {
           buildfire.dialog.toast({
-            message: 'Invalid ID. Please try again.',
+            message: await getLanguage('general.invalidId'),
           });
           return null;
         }
 
         this._openCustomerProfile(userId).then(() => {
           widgetAppState.openedFromScanner = true;
-        }).catch((error) => {
+        }).catch(async (error) => {
           buildfire.dialog.toast({
-            message: 'User with this ID not found. Please try again.',
+            message: await getLanguage('general.userNotFound'),
           });
+          console.log(error);
         });
       },
     );

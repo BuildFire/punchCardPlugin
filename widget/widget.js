@@ -1,46 +1,17 @@
-const applySafeAreaStyles = () => {
-  const { navbarEnabled } = buildfire.getContext();
-  const rootElement = document.querySelector('html');
-  const isSafeAreaEnabled = rootElement.getAttribute('safe-area') === 'true';
-  if (isSafeAreaEnabled) {
-    if (!navbarEnabled) {
-      const body = document.querySelector('body');
-      body.classList.add('has-safe-area');
-    }
-  }
-};
-const parseDeeplinkData = (deeplinkQueryString) => {
-  let cleanedString;
-  if (typeof deeplinkQueryString === 'string') {
-    cleanedString = deeplinkQueryString.replace(/^&dld=/, '');
-  } else {
-    return deeplinkQueryString;
-  }
-
-  try {
-    const decodedString = decodeURIComponent(cleanedString);
-    return JSON.parse(decodedString);
-  } catch (error) {
-    console.error('Error decoding deepLinkData:', error);
-    return null;
-  }
-};
 const initApp = async () => {
   buildfire.appearance.titlebar.show();
   applySafeAreaStyles();
   try {
-    const settingsData = await Settings.get();
-    widgetAppState.settings = settingsData.data;
+    const { settingData } = await Settings.get();
+     widgetAppState.settings = settingData;
     await AuthManager.getUserPermission();
+    AuthManager.isEmployee = true;
     if (AuthManager.isEmployee) {
       widgetAppRouter.init();
       EmployeeView.init();
     } else {
-      CustomerView.toggleSkeleton('start', !!widgetAppState.settings.introductionWYSIWYG);
-      await CustomerController.handleCustomerIdGeneration();
       CustomerView.init();
       widgetAppRouter.init();
-      CustomerView.toggleSkeleton('stop');
     }
     handleCPSync.receivedMessage();
     NotificationsManager.init();

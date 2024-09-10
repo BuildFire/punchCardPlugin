@@ -4,7 +4,7 @@ const CustomerView = {
     qrCodeElement: null,
     qrSkeleton: null,
     introductionWYSIWYG: null,
-    customerUserId: null,
+    friendlyId: null,
     historyIcon: null,
     incrementButton: null,
     decrementButton: null,
@@ -45,7 +45,7 @@ const CustomerView = {
     this._uiElement.historyIcon = document.getElementById('historyIcon');
     if (!isEmployee) {
       this._uiElement.qrCodeElement = document.getElementById('qrCode');
-      this._uiElement.customerUserId = document.getElementById('customerUserId');
+      this._uiElement.friendlyId = document.getElementById('friendlyId');
       this._uiElement.introductionWYSIWYG = document.getElementById('introductionWYSIWYG');
       this.openTransactionView = this._openTransactionView.bind(this);
       this._uiElement.historyIcon.addEventListener('click', this.openTransactionView);
@@ -157,7 +157,7 @@ const CustomerView = {
     this._uiElement.cardName.innerHTML = widgetAppState.settings.rewardName;
     if (!isEmployee) {
       this._uiElement.introductionWYSIWYG.innerHTML = '';
-      this._uiElement.customerUserId.innerHTML = widgetAppState.currentCustomer.customerUserId;
+      this._uiElement.friendlyId.innerHTML = widgetAppState.currentCustomer.friendlyId;
       if (widgetAppState.settings.introductionWYSIWYG.trim() !== '') {
         this._uiElement.introductionWYSIWYG.innerHTML = widgetAppState.settings.introductionWYSIWYG;
       } else {
@@ -264,7 +264,7 @@ const CustomerView = {
       this._uiElement.qrCodeElement.removeChild(this._uiElement.qrCodeElement.firstChild);
     }
     new QRCode(this._uiElement.qrCodeElement, {
-      text: `${String(widgetAppState.currentCustomer.customerUserId)}-${widgetAppState.secretKey}`,
+      text: `${String(widgetAppState.currentCustomer.friendlyId)}-${widgetAppState.secretKey}`,
       width: 150,
       height: 150,
       colorDark: '#000000',
@@ -374,14 +374,17 @@ const CustomerView = {
     }
   },
 
-  init() {
+  async init() {
     const { isEmployee } = AuthManager;
     this.showElements();
     if (!isEmployee) {
+      this.toggleSkeleton('start', !!widgetAppState.settings.introductionWYSIWYG);
+      await CustomerController.handleCustomerIdGeneration();
       this._initUiElements();
       this._initValues();
       this._initQrCode();
       this._initListView();
+      this.toggleSkeleton('stop');
     } else {
       this._initUiElements();
       this._initValues();

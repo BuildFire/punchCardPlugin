@@ -37,11 +37,24 @@ const widgetAppRouter = {
 
   init() {
     buildfire.history.onPop((breadcrumbs) => {
-      this.currentPage = breadcrumbs.options.pageId;
       if (!breadcrumbs.options.pageId) {
+        if (breadcrumbs.options.pluginData && breadcrumbs.options.pluginData.pushToHistory === false) {
+          if (!AuthManager.isEmployee) {
+            if (this.currentPage) {
+              widgetAppRouter.goToPage('home');
+              return;
+            }
+          } else {
+            if (this.currentPage) {
+              widgetAppRouter.goToPage('employeeTransaction');
+              return;
+            }
+          }
+        }
         buildfire.navigation.goBack();
         return;
       }
+      this.currentPage = breadcrumbs.options.pageId;
       if (breadcrumbs.options.pageId === 'employeeTransaction') {
         CustomerView.reset();
       }

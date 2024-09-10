@@ -7,7 +7,7 @@ class Customer {
   constructor(data = {}) {
     this.id = data.id || null;
     this.customerId = data.customerId;
-    this.customerUserId = data.customerUserId;
+    this.friendlyId = data.friendlyId;
     this.currentStamps = data.currentStamps || 0;
     this.lifeTimeStamps = data.lifeTimeStamps || 0;
     this.lifeTimeRedeems = data.lifeTimeRedeems || 0;
@@ -27,7 +27,7 @@ class Customer {
     return {
       id: this.id,
       customerId: this.customerId,
-      customerUserId: this.customerUserId,
+      friendlyId: this.friendlyId,
       currentStamps: this.currentStamps,
       lifeTimeStamps: this.lifeTimeStamps,
       lifeTimeRedeems: this.lifeTimeRedeems,
@@ -39,8 +39,10 @@ class Customer {
       isActive: this.isActive,
       _buildfire: {
         index: {
-          string1: this.customerId,
-          array1: [{ string1: `customerUserId_${this.customerUserId}` }],
+          array1: [
+            { string1: `customerId_${this.customerId}` },
+            { string1: `friendlyId_${this.friendlyId}` },
+          ],
         },
       },
     };

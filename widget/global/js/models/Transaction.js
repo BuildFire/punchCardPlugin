@@ -1,11 +1,11 @@
 class Transaction {
   constructor(data = {}) {
-    this.id = data.id;
-    this.action = data.action; // ENUM
-    this.customerId = data.customerId || null;
-    this.employeeId = data.employeeId || null;
-    this.customerName = data.customerName || null;
-    this.employeeName = data.employeeName || null;
+    this.id = data.id || null;
+    this.action = data.action || ''; // ENUM
+    this.customerId = data.customerId || '';
+    this.employeeId = data.employeeId || '';
+    this.customerName = data.customerName || '';
+    this.employeeName = data.employeeName || '';
     this.changeValue = data.changeValue || 0; // changed stamps
     this.rewards = data.rewards || 0;
     this.createdOn = data.createdOn || new Date();

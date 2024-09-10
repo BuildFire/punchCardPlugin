@@ -20,10 +20,6 @@
     },
     "customTabs": [
       {
-        "title": "Design",
-        "url": "/design/index.html"
-      },
-      {
         "title": "History",
         "url": "/transaction/index.html"
       },

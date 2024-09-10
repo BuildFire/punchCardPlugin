@@ -68,18 +68,18 @@
           "inputType": "text"
         },
         "enterUserId" : {
-          "title": "Enter User Id",
-          "placeholder": "Enter User Id",
+          "title": "Enter User ID",
+          "placeholder": "Enter User ID",
           "maxLength": 40,
-          "defaultValue": "Enter User Id",
+          "defaultValue": "Enter User ID",
           "required": true,
           "inputType": "text"
         },
         "userId" : {
-          "title": "User Id",
-          "placeholder": "User Id",
+          "title": "User ID",
+          "placeholder": "User ID",
           "maxLength": 25,
-          "defaultValue": "User Id",
+          "defaultValue": "User ID",
           "required": true,
           "inputType": "text"
         },
@@ -189,18 +189,26 @@
           "inputType": "text"
         },
         "userIdRequired": {
-          "title": "User id Required",
-          "placeholder": "User id is required",
+          "title": "User iD Required",
+          "placeholder": "User iD is required",
           "maxLength": 50,
-          "defaultValue": "User id is required",
+          "defaultValue": "User iD is required",
           "required": true,
           "inputType": "text"
         },
         "invalidId": {
-          "title": "Invalid Id",
+          "title": "Invalid ID",
           "placeholder": "Invalid ID. Please try again.",
           "maxLength": 50,
           "defaultValue": "Invalid ID. Please try again.",
+          "required": true,
+          "inputType": "text"
+        },
+        "invalidQRCode": {
+          "title": "Invalid Qr Code",
+          "placeholder": "Invalid QR code. Please try again.",
+          "maxLength": 50,
+          "defaultValue": "Invalid QR code. Please try again.",
           "required": true,
           "inputType": "text"
         },

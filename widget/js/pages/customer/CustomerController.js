@@ -4,13 +4,13 @@ const CustomerController = {
     try {
       const { currentUser } = AuthManager;
       [widgetAppState.currentCustomer] = await Customers.search({
-        filter: { '_buildfire.index.string1': currentUser.userId },
+        filter: { '_buildfire.index.array1.string1': `customerId_${currentUser.userId}` },
         limit: 1,
       });
       if (!widgetAppState.currentCustomer) {
         const code = await UserCodeSequences.generateUserCode();
         widgetAppState.currentCustomer = await Customers.save({
-          customerUserId: code,
+          friendlyId: code,
         });
       }
     } catch (error) {
@@ -137,15 +137,18 @@ const CustomerController = {
       }
       if (transactions.length > 0) {
         await TransactionController.addTransactions(transactions);
-        AnalyticsManager.trackAction('employeePunched', { _buildfire: { aggregationValue: newStamps } });
-        AnalyticsManager.trackAction('userStamped', { _buildfire: { aggregationValue: newStamps } });
+        if (newStamps > 0) {
+          AnalyticsManager.trackAction('staffStampsGiven', { _buildfire: { aggregationValue: newStamps } });
+        }
+
         if (lifeTimeRedeems > currentCustomer.lifeTimeRedeems) {
-          AnalyticsManager.trackAction('userRedeemed', {
+          AnalyticsManager.trackAction('staffRewardsRedeemed', {
             _buildfire: { aggregationValue: lifeTimeRedeems - currentCustomer.lifeTimeRedeems },
           });
         }
         if (availbleRewardLength > 0) {
-          NotificationsManager.customerEarned(currentCustomer.customerId);
+          AnalyticsManager.trackAction('staffRewardsApproved', { _buildfire: { aggregationValue: availbleRewardLength } });
+          NotificationsManager.sendEarnedReward(currentCustomer.customerId);
         }
       }
       return {
@@ -172,9 +175,9 @@ const CustomerController = {
     }
     return false;
   },
-  async  getCustomerInfo(customerUserId, cardSize) {
+  async  getCustomerInfo(friendlyId, cardSize) {
     [widgetAppState.currentCustomer] = await Customers.search({
-      filter: { '_buildfire.index.array1.string1': `customerUserId_${customerUserId}` },
+      filter: { '_buildfire.index.array1.string1': `friendlyId_${friendlyId}` },
       limit: 1,
     });
     if (!widgetAppState.currentCustomer) {

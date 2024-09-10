@@ -4,7 +4,7 @@ describe('Customers Repository', () => {
     mockData = {
       id: null,
       customerId: '123',
-      customerUserId: '456',
+      friendlyId: '456',
       currentStamps: 10,
       lifeTimeStamps: 20,
       lifeTimeRedeems: 5,
@@ -15,7 +15,7 @@ describe('Customers Repository', () => {
       updatedOn: new Date(),
       isActive: true,
       _buildfire: {
-        index: { string1: '123' },
+        index: { array1: [{ string1: 'customerId_123' }] },
       },
     };
   });
@@ -59,7 +59,7 @@ describe('Customer Controller', () => {
   it('should handle customer ID generation when customer exists', async () => {
     await CustomerController.handleCustomerIdGeneration();
     expect(Customers.search).toHaveBeenCalledWith({
-      filter: { '_buildfire.index.string1': 'testUserId' },
+      filter: { '_buildfire.index.array1.string1': 'customerId_testUserId' },
       limit: 1,
     });
     expect(Customers.save).not.toHaveBeenCalled();
@@ -69,7 +69,7 @@ describe('Customer Controller', () => {
     await CustomerController.handleCustomerIdGeneration();
     expect(UserCodeSequences.generateUserCode).toHaveBeenCalled();
     expect(Customers.save).toHaveBeenCalledWith({
-      customerUserId: '12345',
+      friendlyId: '12345',
     });
   });
   it('should increment stamps correctly', () => {

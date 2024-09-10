@@ -32,14 +32,14 @@ const contentView = {
       }
       contentState.settings.rewardName = event.target.value;
       this._uiElements.form.rewardNameError.classList.add('hidden');
-      contentController.saveSettings(500).then(() => {
+      contentController.saveSettings().then(() => {
         cpShared.syncWithWidget({ cmd: 'contentChanged', data: { rewardName: event.target.value } });
       });
     });
 
     this._uiElements.form.cardSize.addEventListener('change', (event) => {
       contentState.settings.cardSize = Number(event.target.value);
-      contentController.saveSettings(500).then(() => {
+      contentController.saveSettings().then(() => {
         cpShared.syncWithWidget({ cmd: 'cardChanged', data: { cardSize: Number(event.target.value) } });
       });
     });

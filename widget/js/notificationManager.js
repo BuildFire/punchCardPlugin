@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 const NotificationsManager = {
-  scheduleNotification(options, _callback) {
+  _scheduleNotification(options, _callback) {
     const {
       title,
       description,
@@ -18,7 +18,7 @@ const NotificationsManager = {
     );
   },
 
-  async customerEarned(userId) {
+  async sendEarnedReward(userId) {
     const notificationTitle = await getLanguage('notifications.newReward');
     const notificationDescription = await getLanguage('notifications.newRewardDescription');
     const notificationOptions = {
@@ -26,7 +26,7 @@ const NotificationsManager = {
       description: notificationDescription,
       users: [userId],
     };
-    NotificationsManager.scheduleNotification(notificationOptions, (err, res) => {
+    NotificationsManager._scheduleNotification(notificationOptions, (err, res) => {
       if (err) console.error(err);
     });
   },

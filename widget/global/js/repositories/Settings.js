@@ -19,10 +19,10 @@ class Settings {
         if (!res || !res.data || !Object.keys(res.data).length) {
           const data = new Setting().toJSON();
           Settings.save(data);
-          resolve({ data, init: true });
+          resolve({ settingData: data, isNewInstance: true });
         } else {
           const data = new Setting(res.data).toJSON();
-          resolve({ data, init: false });
+          resolve({ settingData: data, isNewInstance: false });
         }
       });
     });

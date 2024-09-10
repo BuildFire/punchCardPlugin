@@ -2,5 +2,5 @@
 const userName = (user) => {
   const firstName = user?.firstName?.trim() || '';
   const lastName = user?.lastName?.trim() || '';
-  return `${firstName} ${lastName}`.trim() || user?.displayName;
+  return `${firstName} ${lastName}`.trim() || user?.displayName || user?.username;
 };

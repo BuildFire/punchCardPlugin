@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const TransactionView = {
   customerListView: null,
+  translations: {},
   _customerListViewOptions: {
     settings: {
       itemImage: 'none',
@@ -13,7 +14,7 @@ const TransactionView = {
       },
     },
     translations: {
-      emptyStateMessage: 'No Transaction Found',
+      emptyStateMessage: '',
     },
   },
   _employeeListViewOptions: {
@@ -28,7 +29,7 @@ const TransactionView = {
       },
     },
     translations: {
-      emptyStateMessage: 'No Transaction Found',
+      emptyStateMessage: '',
     },
   },
 
@@ -37,6 +38,13 @@ const TransactionView = {
     document.getElementById('transactionCustomerList').innerHTML = '';
     document.getElementById('transactionCustomerList').classList.add('hidden');
     this.customerListView = new buildfire.components.listView('#transactionCustomerList', this._customerListViewOptions);
+    this.translations = {
+      rewardsEarned: await getLanguage('general.rewardsEarned'),
+      rewardEarned: await getLanguage('general.rewardEarned'),
+      rewardsRedeemed: await getLanguage('general.rewardsRedeemed'),
+      rewardRedeemed: await getLanguage('general.rewardRedeemed'),
+      stamps: await getLanguage('general.stamps'),
+    };
 
     this.customerListView.onDataRequest = async (event, callback) => {
       const searchOptions = {
@@ -63,25 +71,20 @@ const TransactionView = {
             let title = '';
             if (transaction.action === Transaction.Action.EARNED) {
               if (transaction.rewards > 1) {
-                const text = await getLanguage('general.rewardsEarned');
-                title = `${text}: ${transaction.rewards}`;
+                title = `${this.translations.rewardsEarned}: ${transaction.rewards}`;
               } else {
-                const text = await getLanguage('general.rewardEarned');
-                title = `${text}: ${transaction.rewards}`;
+                title = `${this.translations.rewardEarned}: ${transaction.rewards}`;
               }
             }
             if (transaction.action === Transaction.Action.REDEEMED) {
               if (transaction.rewards > 1) {
-                const text = await getLanguage('general.rewardsRedeemed');
-                title = `${text}: ${transaction.rewards}`;
+                title = `${this.translations.rewardsRedeemed}: ${transaction.rewards}`;
               } else {
-                const text = await getLanguage('general.rewardRedeemed');
-                title = `${text}: ${transaction.rewards}`;
+                title = `${this.translations.rewardRedeemed}: ${transaction.rewards}`;
               }
             }
             if (transaction.action === Transaction.Action.STAMPS_CHANGE) {
-              const stamps = await getLanguage('general.stamps');
-              title = `${stamps}: ${transaction.changeValue}`;
+              title = `${this.translations.stamps}: ${transaction.changeValue}`;
             }
             return {
               id: i + event.page * event.pageSize,
@@ -107,6 +110,14 @@ const TransactionView = {
     const listView = new buildfire.components.listView('#transactionTrainerList',
       this._employeeListViewOptions);
 
+    this.translations = {
+      rewardsEarned: await getLanguage('general.rewardsEarned'),
+      rewardEarned: await getLanguage('general.rewardEarned'),
+      rewardsRedeemed: await getLanguage('general.rewardsRedeemed'),
+      rewardRedeemed: await getLanguage('general.rewardRedeemed'),
+      stamps: await getLanguage('general.stamps'),
+    };
+
     listView.onDataRequest = (event, callback) => {
       const searchOptions = {
         sort: { '_buildfire.index.date1': -1 },
@@ -123,29 +134,24 @@ const TransactionView = {
               let description = '';
               if (transaction.action === Transaction.Action.EARNED) {
                 if (transaction.rewards > 1) {
-                  const text = await getLanguage('general.rewardsEarned');
-                  description = `${text}: ${transaction.rewards}`;
+                  description = `${this.translations.rewardsEarned}: ${transaction.rewards}`;
                 } else {
-                  const text = await getLanguage('general.rewardEarned');
-                  description = `${text}: ${transaction.rewards}`;
+                  description = `${this.translations.rewardEarned}: ${transaction.rewards}`;
                 }
               }
               if (transaction.action === Transaction.Action.REDEEMED) {
                 if (transaction.rewards > 1) {
-                  const text = await getLanguage('general.rewardsRedeemed');
-                  description = `${text}: ${transaction.rewards}`;
+                  description = `${this.translations.rewardsRedeemed}: ${transaction.rewards}`;
                 } else {
-                  const text = await getLanguage('general.rewardRedeemed');
-                  description = `${text}: ${transaction.rewards}`;
+                  description = `${this.translations.rewardRedeemed}: ${transaction.rewards}`;
                 }
               }
               if (transaction.action === Transaction.Action.STAMPS_CHANGE) {
-                const stamps = await getLanguage('general.stamps');
-                description = `${stamps}: ${transaction.changeValue}`;
+                description = `${this.translations.stamps}: ${transaction.changeValue}`;
               }
               return {
                 id: transaction.id,
-                title: user?.displayName ? user.displayName : 'User',
+                title: userName(user),
                 description,
                 subtitle: await formatDate(transaction.createdOn),
 

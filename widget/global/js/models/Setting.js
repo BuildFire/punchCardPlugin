@@ -8,7 +8,7 @@ class Setting {
     this.introductionWYSIWYG = data.introductionWYSIWYG || '';
     this.rewardName = data.rewardName || 'Free Coffee';
     this.cardSize = data.cardSize || 10;
-    this.employeesPermissions = data.employeesPermissions || [];
+    this.employeeTags = data.employeeTags || [];
     this.createdOn = data.createdOn || new Date();
     this.createdBy = data.createdBy || null;
     this.lastUpdatedOn = data.lastUpdatedOn || new Date();
@@ -21,7 +21,7 @@ class Setting {
       introductionWYSIWYG: this.introductionWYSIWYG,
       rewardName: this.rewardName,
       cardSize: this.cardSize,
-      employeesPermissions: this.employeesPermissions,
+      employeeTags: this.employeeTags,
       createdOn: this.createdOn,
       createdBy: this.createdBy,
       lastUpdatedOn: this.lastUpdatedOn,
