@@ -20,10 +20,10 @@
           "inputType": "text"
         },
         "lifeTimeRedeems": {
-          "title": "Lifetime redeems",
-          "placeholder": "Lifetime redeems",
+          "title": "Rewards redeemed",
+          "placeholder": "Rewards redeemed",
           "maxLength": 50,
-          "defaultValue": "Lifetime redeems",
+          "defaultValue": "Rewards redeemed",
           "required": true,
           "inputType": "text"
         },
@@ -217,6 +217,14 @@
           "placeholder": "User with this ID not found. Please try again.",
           "maxLength": 50,
           "defaultValue": "User with this ID not found. Please try again.",
+          "required": true,
+          "inputType": "text"
+        },
+        "qrScannerDeviceOnly": {
+          "title": "Scanner works only on devices.",
+          "placeholder": "Scanner works only on devices.",
+          "maxLength": 80,
+          "defaultValue": "Scanner works only on devices.",
           "required": true,
           "inputType": "text"
         }

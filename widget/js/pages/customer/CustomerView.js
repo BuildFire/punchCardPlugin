@@ -41,7 +41,7 @@ const CustomerView = {
   removedStamps: 0,
   _initUiElements() {
     const { isEmployee } = AuthManager;
-    if (this._uiElement.incrementButton){
+    if (this._uiElement.incrementButton) {
       this.reset();
     }
     this._uiElement.cardName = document.getElementById('cardName');
@@ -82,7 +82,6 @@ const CustomerView = {
       this.newStamps = 0;
       this.removedStamps = 0;
     }
-
 
     this._uiElement.historyIcon.removeEventListener('click', this.openTransactionView);
 
@@ -182,6 +181,7 @@ const CustomerView = {
     this.drawStamps(widgetAppState.settings.cardSize);
   },
   drawStamps(cardSize) {
+    const cardSizeContainer = document.getElementById('cardSizeContainer');
     const stampContainer1 = document.getElementById('stampList1');
     const stampContainer2 = document.getElementById('stampList2');
     stampContainer1.innerHTML = '';
@@ -196,6 +196,7 @@ const CustomerView = {
     }
 
     if (cardSize > 5 && !isTablet) {
+      cardSizeContainer.classList.remove('margin-bottom-90');
       if (cardSize === 7 || cardSize === 9 || cardSize === 6) {
         stampContainer2.style.width = '80%';
       } else {
@@ -208,6 +209,9 @@ const CustomerView = {
       this.createStamps(stampContainer1, cardSize1, 0);
       this.createStamps(stampContainer2, cardSize2, cardSize1);
     } else {
+      if (!AuthManager.isEmployee) {
+        cardSizeContainer.classList.add('margin-bottom-90');
+      }
       this.createStamps(stampContainer1, cardSize, 0);
     }
   },
@@ -294,7 +298,7 @@ const CustomerView = {
     const availableRewardList = document.getElementById('availableRewardList');
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-    const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+    const checkedCount = Array.from(checkboxes).filter((checkbox) => checkbox.checked).length;
 
     availableRewardList.innerHTML = '';
 

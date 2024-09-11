@@ -106,8 +106,8 @@ const TransactionView = {
 
   async _initEmployeeListView() {
     this._employeeListViewOptions.translations.emptyStateMessage = await getLanguage('general.employeeHistoryEmptyState');
-    document.getElementById('transactionTrainerList').innerHTML = '';
-    const listView = new buildfire.components.listView('#transactionTrainerList',
+    document.getElementById('transactionEmployeeList').innerHTML = '';
+    const listView = new buildfire.components.listView('#transactionEmployeeList',
       this._employeeListViewOptions);
 
     this.translations = {

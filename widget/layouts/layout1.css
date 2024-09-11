@@ -12,12 +12,13 @@ body {
 
 #cardSizeContainer {
     margin: 1rem;
+    padding-bottom: 0.5rem;
     background: rgba(150, 150, 150, 0.2);
     border-radius: 4px;
 }
 
 #cardSizeContainer .card-info {
-    padding: 1rem 1rem 1.5rem;
+    padding: 1rem 1rem 0.5rem;
 }
 
 #cardSizeContainer #cardName {
@@ -32,12 +33,8 @@ body {
     align-items: center;
 }
 
-#stampList2 {
-    margin: 0 auto;
-}
-
 .stamp-item {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     text-align: center;
 }
 
@@ -65,7 +62,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 28px 0 1rem;
 }
 
 
@@ -154,7 +151,14 @@ body {
 }
 
 .mdc-checkbox {
-    --mdc-theme-secondary: var(--bf-theme-primary);
+   color: var(--bf-theme-primary);
+}
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+    border-color: var(--bf-theme-primary);
+    background-color: var(--bf-theme-primary);
+}
+.mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background::before {
+    background-color: var(--bf-theme-primary);
 }
 
 #confirmTransactionBtn {

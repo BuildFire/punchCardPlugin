@@ -63,9 +63,18 @@ const EmployeeView = {
       document.getElementById('userIdField').value = '';
     });
   },
-  _openScanner() {
+  _openScanner(showDeviceOnlyMessage = true) {
     const isWeb = buildfire.getContext().device.platform === 'web';
-    if (isWeb) return;
+    if (isWeb) {
+      if (!showDeviceOnlyMessage) return null;
+      getLanguage('general.qrScannerDeviceOnly').then((message) => {
+        buildfire.dialog.toast({
+          message,
+        });
+      });
+
+      return null;
+    }
     buildfire.services.camera.barcodeScanner.scan(
       {
         preferFrontCamera: false,
@@ -82,7 +91,7 @@ const EmployeeView = {
         const parts = resultText.split('-');
         if (parts.length < 2) {
           buildfire.dialog.toast({
-            message: 'Invalid QR code. Please try again.',
+            message: await getLanguage('general.invalidQRCode'),
           });
           return null;
         }
@@ -129,14 +138,13 @@ const EmployeeView = {
       widgetAppState.currentCustomer.imageUrl = userData?.imageUrl ? userData.imageUrl : 'https://app.buildfire.com/app/media/avatar.png';
       CustomerView.init();
       widgetAppRouter.push({ pageId: 'home', pageName: 'home', name: 'home' });
-
     } catch (error) {
       throw error;
     }
   },
   init() {
     this._initEventListener();
-    this._openScanner();
+    this._openScanner(false);
     TransactionView.init();
     this._initFabSpeedDial();
     widgetAppRouter.goToPage('employeeTransaction');

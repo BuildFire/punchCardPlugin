@@ -34,14 +34,15 @@ body.has-safe-area #home {
 }
 
 #home .listView-container > .empty_state {
+    height: 230px;
     position: relative;
     top: -20px;
-    height: 36vh;
 }
 
 .rewardListContainer > .empty_state::after {
-    bottom: calc(50% - 8rem) !important;
+    bottom: calc(50% - 9rem) !important;
     font-weight: 400;
+    font-size: 14px;
 
 }
 
@@ -53,12 +54,12 @@ body.has-safe-area #home {
     top: 30% !important;
 }
 
-#transactionCustomerList, #transactionTrainerList {
+#transactionCustomerList, #transactionEmployeeList {
     height: 90vh;
     overflow: scroll;
 }
 
-body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionTrainerList {
+body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmployeeList {
     height: calc(90vh - constant(safe-area-inset-bottom)) !important;
     height: calc(90vh - env(safe-area-inset-bottom)) !important;
 }
@@ -78,10 +79,15 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionTrai
 
 }
 
-#transactionTrainerList > .empty_state::after, #transactionCustomerList > .empty_state::after {
+#transactionEmployeeList > .empty_state, #transactionCustomerList > .empty_state {
+    height: calc(100vh - 12rem);
+    margin-top: -50px;
+}
+
+#transactionEmployeeList > .empty_state::after, #transactionCustomerList > .empty_state::after {
     font-size: 14px !important;
     font-weight: 400 !important;
-    bottom: calc(50% - 3rem) !important;
+    bottom: calc(50% - 3.5rem) !important;
     width: 90%;
 }
 
@@ -155,7 +161,9 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionTrai
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.customer-info #lifeTimeStamps .value, .customer-info #lifeTimeRedeems .value {
+    margin-left: 6px;
+}
 
 #cardSizeContainer #cardName {
     width: 75%;
@@ -202,13 +210,16 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionTrai
 }
 
 .available-reward-title {
-    margin: 1rem;
+    margin: 25px 1rem 0;
     font-size: 20px;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 80%;
+}
+.available-reward-title.employee-only{
+    margin-bottom: 25px !important;
 }
 
 .userid-error {
@@ -220,9 +231,16 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionTrai
 .reward-item {
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     justify-content: space-between;
     cursor: pointer;
+}
+
+#stampList2 {
+    margin: 0 auto;
+}
+.margin-bottom-90{
+    margin-bottom: 90px !important;
 }
 
 #availableRewardList.empty-state {
@@ -233,6 +251,8 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionTrai
 
 #availableRewardList {
     padding-bottom: 80px;
+    position: relative;
+    top: -9px;
 }
 
 html[safe-area="true"] body.has-safe-area #availableRewardList {

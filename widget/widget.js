@@ -3,8 +3,11 @@ const initApp = async () => {
   applySafeAreaStyles();
   try {
     const { settingData } = await Settings.get();
-     widgetAppState.settings = settingData;
+    widgetAppState.settings = settingData;
     await AuthManager.getUserPermission();
+    if (!AuthManager.currentUser) {
+      return;
+    }
     if (AuthManager.isEmployee) {
       EmployeeView.init();
       widgetAppRouter.init();
