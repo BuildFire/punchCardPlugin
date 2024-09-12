@@ -119,6 +119,7 @@ const CustomerView = {
   _addNewTransaction() {
     try {
       const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      this._uiElement.confirmTransactionBtn.disabled = true;
 
       const checkedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
       CustomerController.addNewTransaction(this.newStamps, widgetAppState.currentCustomer.currentStamps,
@@ -131,10 +132,12 @@ const CustomerView = {
           if (widgetAppState.openedFromScanner) {
             EmployeeView._openScanner();
           }
+          this._uiElement.confirmTransactionBtn.disabled = false;
           this.reset();
         });
       });
     } catch (error) {
+      this._uiElement.confirmTransactionBtn.disabled = false;
       console.error('Error while adding new transaction:', error);
     }
   },
@@ -196,7 +199,6 @@ const CustomerView = {
     }
 
     if (cardSize > 5 && !isTablet) {
-      cardSizeContainer.classList.remove('margin-bottom-90');
       if (cardSize === 7 || cardSize === 9 || cardSize === 6) {
         stampContainer2.style.width = '80%';
       } else {
@@ -210,7 +212,6 @@ const CustomerView = {
       this.createStamps(stampContainer2, cardSize2, cardSize1);
     } else {
       if (!AuthManager.isEmployee) {
-        cardSizeContainer.classList.add('margin-bottom-90');
       }
       this.createStamps(stampContainer1, cardSize, 0);
     }

@@ -34,16 +34,25 @@ body.has-safe-area #home {
 }
 
 #home .listView-container > .empty_state {
-    height: 230px;
-    position: relative;
-    top: -20px;
+    height: auto !important;
+    background-image: none !important;
+    margin: 8px 1rem 12px;
+    align-items: flex-start !important;
 }
 
+
 .rewardListContainer > .empty_state::after {
-    bottom: calc(50% - 9rem) !important;
     font-weight: 400;
     font-size: 14px;
+    position: relative;
+    margin: 0 !important;
 
+}
+.rewardListContainer .listView-items {
+    margin-bottom: 14px;
+}
+.friendlyId {
+    padding-bottom: 1rem;
 }
 
 .hint-text {
@@ -238,9 +247,6 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmpl
 
 #stampList2 {
     margin: 0 auto;
-}
-.margin-bottom-90{
-    margin-bottom: 90px !important;
 }
 
 #availableRewardList.empty-state {

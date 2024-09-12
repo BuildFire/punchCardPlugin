@@ -33,7 +33,7 @@
       "layouts": [
         {
           "name": "Layout 1",
-          "imageUrl": "resources/layouts/layout.png",
+          "imageUrl": "resources/layouts/layout1.png",
           "cssPath": "widget/layouts/layout1.css"
         }
       ]
