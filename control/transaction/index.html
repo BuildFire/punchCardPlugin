@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    
+    <script src="../../../../scripts/buildfire.min.js"></script>
+    
+    <link rel="stylesheet" href="../../../../styles/control/siteIcons-control.css"/>
+    <link rel="stylesheet" href="../../../../styles/helper.css"/>
+    <link rel="stylesheet" href="../../../../styles/control/bf-base.css"/>
+    
+    <!-- build:bundleCSSFiles  -->
+    <link rel="stylesheet" href="./css/searchTable.css"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+    <!-- endbuild -->
+    
+    <!-- build:bundleSharedJSFiles -->
+    <script src="../../widget/global/js/models/Transaction.js"></script>
+    <script src="../../widget/global/js/repositories/Transactions.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleJSFiles  -->
+    <script src="./js/utils.js"></script>
+    <script src="./js/components/searchTable.js"></script>
+    <script src="./js/tableController.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+
+
+<div class="hidden margin-top-twenty" id="transactionTableContainer"></div>
+<div class="empty-state" id="emptyTableContainer"></div>
+</body>
+</html>

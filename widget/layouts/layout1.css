@@ -1,0 +1,172 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#cardSizeContainer {
+    margin: 1rem;
+    padding-bottom: 0.5rem;
+    background: rgba(150, 150, 150, 0.2);
+    border-radius: 4px;
+}
+
+#cardSizeContainer .card-info {
+    padding: 1rem 1rem 0.5rem;
+}
+
+#cardSizeContainer #cardName {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--bf-theme-header-text);
+}
+
+.stamp-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stamp-item {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.stamp-item img.stamp-border {
+    border: 2px solid rgba(118, 202, 97, 1);
+}
+
+.stamp-item img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+
+#historyIcon {
+    cursor: pointer;
+}
+
+#historyIcon svg path {
+    fill: var(--bf-theme-icons);
+
+}
+
+#qrCode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 28px 0 1rem;
+}
+
+
+.dialog-userid-title {
+    padding: 24px 24px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--bf-theme-header-text);
+}
+
+.dialog-userid-content {
+    margin-left: 24px;
+    width: 80%;
+    font-size: 14px !important;
+    font-weight: 400;
+    color: var(--bf-theme-body-text);
+}
+.mdc-dialog__actions {
+    padding-top: 24px;
+}
+
+.mdc-text-field {
+    margin: 16px;
+}
+
+.mdc-floating-label {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--bf-theme-body-text);
+}
+
+
+.mdc-text-field__input {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--bf-theme-body-text) !important;
+}
+
+.customer-info #lifeTimeStamps, .customer-info #lifeTimeRedeems {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--bf-theme-body-text);
+
+
+}
+
+#stampsActionContainer #decrementStamp {
+    border: 1px solid var(--bf-theme-primary);
+    color: var(--bf-theme-primary);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#stampsActionContainer #stampValue {
+    background: rgba(150, 150, 150, 0.2);
+    color: var(--bf-theme-body-text);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#stampsActionContainer #incrementStamp {
+    background-color: var(--bf-theme-primary);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reward-title {
+    color: var(--bf-theme-body-text);
+}
+
+#customerTransaction .title, #employeeTransaction .title {
+    color: var(--bf-theme-header-text);
+}
+
+.customer-info {
+    border-bottom: 1px solid var(--bf-theme-border);
+}
+
+#stampsAction .add-stamp-title {
+    color: var(--bf-theme-header-text);
+}
+
+.available-reward-title {
+    color: var(--bf-theme-header-text);
+}
+
+.mdc-checkbox {
+   color: var(--bf-theme-primary);
+}
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+    border-color: var(--bf-theme-primary);
+    background-color: var(--bf-theme-primary);
+}
+.mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background::before {
+    background-color: var(--bf-theme-primary);
+}
+
+#confirmTransactionBtn {
+    border-radius: 4px;
+    background-color: var(--bf-theme-success);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+}
+

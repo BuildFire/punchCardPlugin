@@ -1,11 +1,27 @@
 {
-  "extends": ["eslint:recommended", "airbnb-base"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base"
+  ],
   "rules": {
-    "semi": [2, "always"]
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
+    "max-classes-per-file": 0,
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ]
   },
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "env": {
     "browser": true,
@@ -14,7 +30,47 @@
   },
   "globals": {
     "buildfire": true,
-    "tinymce": true,
-    "mdc": true
+    "UserCodeSequence": true,
+    "UserCodeSequences": true,
+    "Setting": true,
+    "Settings": true,
+    "Customer": true,
+    "Customers": true,
+    "Transaction": true,
+    "Transactions": true,
+    "widgetAppState": true,
+    "widgetAppRouter": true,
+    "CustomerController": true,
+    "CustomerView": true,
+    "TransactionController": true,
+    "TransactionView": true,
+    "AuthManager": true,
+    "EmployeeView": true,
+    "utils": true,
+    "contentState": true,
+    "contentController": true,
+    "contentView": true,
+    "contentHelper": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "expect": true,
+    "spyOnProperty": true,
+    "spyOn": true,
+    "jasmine": true,
+    "expectAsync": true,
+    "dateFns": true,
+    "cpShared": true,
+    "handleCPSync": true,
+    "listView": true,
+    "resizeImage": true,
+    "userName": true,
+    "getLanguage": true,
+    "formatDate": true,
+    "ANALYTICS_EVENTS": true,
+    "NotificationsManager": true,
+    "AnalyticsManager": true,
+    "parseDeeplinkData": true,
+    "applySafeAreaStyles": true
   }
 }

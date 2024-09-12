@@ -1,7 +1,7 @@
 {
   "author": "BuildFire",
-  "pluginName":"Punch Card",
-  "pluginDescription":"Bare bones plugin showing simple autonomy of a plugin",
+  "pluginName": "Punch Card",
+  "pluginDescription": "Say farewell to conventional loyalty cards and embrace a seamless, digital punch card experience. With this feature, your users effortlessly earn rewards with every purchase – just 'punch' their virtual card, and witness their loyalty points grow. Our user-friendly design ensures tracking their loyalty journey and redeeming rewards is a breeze.",
   "supportEmail": "support@buildfire.com",
   "requireLogin": true,
   "control": {
@@ -9,16 +9,37 @@
       "enabled": true
     },
     "design": {
-      "enabled": false
+      "enabled": true
     },
     "settings": {
       "enabled": true
     },
-    "customTabs": []
+    "language": {
+      "enabled": true,
+      "languageJsonPath": "resources/languages.json"
+    },
+    "customTabs": [
+      {
+        "title": "History",
+        "url": "/transaction/index.html"
+      },
+      {
+        "title": "Tests",
+        "url": "/tests/index.html?random=false&stopOnSpecFailure=true"
+      }
+    ],
+    "cssInjection": {
+      "enabled": true,
+      "layouts": [
+        {
+          "name": "Layout 1",
+          "imageUrl": "resources/layouts/layout1.png",
+          "cssPath": "widget/layouts/layout1.css"
+        }
+      ]
+    }
   },
-  "widget": {},
-  "features": [],
-  "languages": [
-    "en"
-  ]
+  "keywords": "Loyalty program, digital rewards, punch card, customer retention, loyalty points, rewards system, mobile stamping, virtual punch card, purchase tracking, incentive program, mobile loyalty, points accumulation, customer engagement, redeemable points, retail rewards",
+  "features" : [{"name" : "BarCodeScanner"}],
+  "languages": ["en"]
 }

@@ -1,19 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    <script src="../../../../scripts/buildfire.min.js"></script>
+    <script src="../../../../scripts/tinymce/tinymce.min.js"></script>
+    
+    <link rel="stylesheet" href="../../../../styles/control/bf-base.css"/>
+    <link rel="stylesheet" href="../../../../styles/helper.css"/>
+    <link rel="stylesheet" href="../../../../styles/control/siteIcons-control.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    
+    <!-- build:bundleCSSFiles  -->
+    <link rel="stylesheet" href="./style.css"/>
+    <!-- endbuild -->
+    
+    <!-- build:bundleSharedJSFiles -->
+    <script src="../../widget/global/js/services/analytics/const.js"></script>
+    <script src="../../widget/global/js/services/analytics/analyticsManager.js"></script>
+    <script src="../../widget/global/js/services/authManager.js"></script>
+    <script src="../../widget/global/js/models/UserCodeSequence.js"></script>
+    <script src="../../widget/global/js/models/Setting.js"></script>
+    <script src="../../widget/global/js/repositories/UserCodeSequences.js"></script>
+    <script src="../../widget/global/js/repositories/Settings.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleCPSharedJSFiles -->
+    <script src="../cpShared/index.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleJSFiles  -->
+    <script src="./js/contentState.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/contentController.js"></script>
+    <script src="./js/contentView.js"></script>
+    <script src="./js/index.js"></script>
+    <!-- endbuild -->
 
-	<!-- JS -->
-	<script src="../../../../scripts/buildfire.js"></script>
-
-	<!--
-	<script src="../../../../scripts/angular/angular.min.js"></script>
-	<script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
-	<script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
-	-->
 </head>
 <body>
-<span>Content - Hello, world!</span>
+
+<!-- Start Introduction WYSIWYG Section -->
+<div class="margin-bottom-thirty">
+    <h1 class="section-title">Introduction</h1>
+    
+    <textarea class="hidden" id="introductionWYSIWYGContent" name="introContent"></textarea>
+</div>
+<div class="empty-state hidden" id="introLoadingScreen"></div>
+<!-- End Introduction WYSIWYG Section -->
+
+<div>
+    <div class="sub-page">
+        <div class="sub-page-body">
+            <h1 class="section-title">Card Details</h1>
+            <div class="form-group main clearfix">
+                <div class="col-md-3 pull-left padding-left-zero">
+                    <label class="required-label" for="rewardName">Reward Name
+                        <span class="required">*</span>
+                    </label>
+                
+                </div>
+                <div class="col-md-9 pull-right padding-right-zero">
+                    <input id="rewardName" type="text" class="form-control" maxlength="100" placeholder=""/>
+                    <div id="rewardNameError" class="margin-top-ten text-danger hidden">Required</div>
+                </div>
+            </div>
+            <div class="form-group main clearfix">
+                <div class="col-md-3 pull-left padding-left-zero">
+                    <label class="tooltip-container">
+                        <span>Card Size</span>
+                        <span class="btn-info-icon btn-primary">
+                            <span class="cp-tooltip">Specify the number of card punches required before the user is eligible to receive an award.</span>
+                        </span>
+                    </label>
+                
+                </div>
+                <div class="col-md-9 pull-right padding-right-zero dropdown">
+                    <select id="cardSize" class="form-control margin-left-zero change-display">
+                        <option disabled>Select Card Size</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10" selected>10</option>
+                    </select>
+                    <span class="chevron icon-chevron-down pull-right"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

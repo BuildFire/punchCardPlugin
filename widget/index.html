@@ -1,28 +1,199 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8" />
-
-	<!-- JS -->
-	<script src="../../../scripts/buildfire.js"></script>
-
-	<!-- build:bundleJSFiles  -->
-	<script src="./global/js/models/Post.js"></script>
-	<script src="js/b.js"></script>
-	<!-- endbuild -->
-
-	<!-- build:bundleCSSFiles  -->
-	<link rel="stylesheet" type="text/css" href="css/a.css">
-	<!-- endbuild -->
-
-	<!--
-	<script src="../../../../scripts/angular/angular.min.js"></script>
-	<script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
-	<script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
-	-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="buildfire" content="enablePluginJsonLoad,enableMDTheme,disableBootstrap">
+    
+    <link rel="stylesheet" href="../../../styles/helper.css"/>
+    <link rel="stylesheet" href="../../../styles/components/fabSpeedDial/fabSpeedDial.css"/>
+    <link rel="stylesheet" href="../../../styles/components/skeleton.css"/>
+    <link rel="stylesheet" href="../../../styles/components/listView@2.0/listView.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link href="../../../styles/materialDesign/material-components-web@4.0.0.min.css" rel="stylesheet"/>
+    
+    <!--build:bundleCSSFiles-->
+    <link rel="stylesheet" href="./style/style.css"/>
+    <!--endbuild-->
+    
+    <script src="../../../scripts/buildfire.min.js"></script>
+    <script src="../../../scripts/buildfire/services/camera/barcodeScanner.js"></script>
+    <script src="../../../scripts/buildfire/components/fabSpeedDial/fabSpeedDial.js"></script>
+    <script src="../../../scripts/buildfire/services/notifications/pushNotifications.js"></script>
+    <script src="../../../scripts/buildfire/components/skeleton/skeleton.js"></script>
+    <script src="../../../scripts/buildfire/components/listView@2.0/listView.js"></script>
+    <script src="../../../scripts/materialDesign/material-components-web@4.0.0.min.js" type="text/javascript"></script>
+    
+    <!-- Include the QRCode library -->
+    <script src="./lib/Qrcode.min.js"></script>
+    
+    <!--build:bundleWidgetSharedJSFiles -->
+    <script src="./global/js/services/analytics/const.js"></script>
+    <script src="./global/js/services/analytics/analyticsManager.js"></script>
+    <script src="./global/js/services/authManager.js"></script>
+    <script src="./global/js/models/Setting.js"></script>
+    <script src="./global/js/models/UserCodeSequence.js"></script>
+    <script src="./global/js/models/Customer.js"></script>
+    <script src="./global/js/models/Transaction.js"></script>
+    <script src="./global/js/repositories/Settings.js"></script>
+    <script src="./global/js/repositories/UserCodeSequences.js"></script>
+    <script src="./global/js/repositories/Customers.js"></script>
+    <script src="./global/js/repositories/Transactions.js"></script>
+    <!--endbuild-->
+    
+    <!--build:bundleJSFiles -->
+    <script src="./js/widgetAppState.js"></script>
+    <script src="./js/widgetAppRouter.js"></script>
+    <script src="./js/pages/customer/CustomerController.js"></script>
+    <script src="./js/pages/transaction/TransactionController.js"></script>
+    <script src="./js/utils/date.js"></script>
+    <script src="./js/utils/userName.js"></script>
+    <script src="./js/utils/string.js"></script>
+    <script src="./js/utils/handleCPSync.js"></script>
+    <script src="./js/utils/resizeImage.js"></script>
+    <script src="./js/utils/parseDeeplinkData.js"></script>
+    <script src="./js/utils/safeAreaStyle.js"></script>
+    <script src="./js/notificationManager.js"></script>
+    <script src="./js/pages/customer/CustomerView.js"></script>
+    <script src="./js/pages/employee/EmployeeView.js"></script>
+    <script src="./js/pages/transaction/TransactionView.js"></script>
+    <script src="./widget.js"></script>
+    <!--endbuild-->
 </head>
 <body>
-<span>Widget - Hello, world!</span>
+
+<template id="template">
+    <div class="mdc-checkbox">
+        <input type="checkbox"
+               class="mdc-checkbox__native-control"
+               id="demo-list-checkbox-item-1"/>
+        <div class="mdc-checkbox__background">
+            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+            </svg>
+            <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+</template>
+
+<div class="mdc-dialog">
+    <div class="mdc-dialog__container">
+        <div class="mdc-dialog__surface" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
+             aria-describedby="my-dialog-content" tabindex="-1">
+            
+            <h4 class="dialog-userid-title" bfString="general.enterUserId"></h4>
+            <p class="dialog-userid-content" bfString="general.modalDescription"></p>
+            <label class="mdc-text-field mdc-text-field--filled">
+                <span class="mdc-text-field__ripple"></span>
+                <span class="mdc-floating-label hint-text" id="userId" bfString="general.userId"></span>
+                <input id="userIdField" class="mdc-text-field__input" type="number" aria-labelledby="userId">
+                <span class="mdc-line-ripple"></span>
+            </label>
+            <span id="userIdError" class="userid-error"></span>
+            
+            <div class="mdc-dialog__actions">
+                <button id="closeBtn" type="button" class="mdc-button mdc-dialog__button"
+                        data-mdc-dialog-action="close">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label" bfString="general.cancel"></span>
+                </button>
+                <button id="confirmBtn" type="button" class="mdc-button mdc-dialog__button">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label" bfString="general.modalConfirmBtn"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="mdc-dialog__scrim"></div>
+</div>
+
+<!--Start Skeleton-->
+<div id="skeletonContainer" class="hidden">
+    <div id="skeletonWYSIWYG" class="skeleton-wysiwyg"></div>
+    <div id="skeletonCardSize" class="skeleton-card-size"></div>
+    <div id="listSkeleton"></div>
+
+</div>
+<!--End Skeleton-->
+
+<!--Start Customer profile Screen-->
+<div id="home" class="screen hidden">
+    <div class="customer-info hidden employee-only">
+        <img id="userImage" src="" alt="customer-image">
+        <div class="customer-content">
+            <p id="userName"></p>
+            <div id="lifeTimeStamps">
+                <p class="title"></p>
+                <span class="value"></span>
+            </div>
+            <div id="lifeTimeRedeems">
+                <p class="title"></p>
+                <span class="value"></span>
+            </div>
+        </div>
+    </div>
+    <div id="introductionWYSIWYG" class="customer-only hidden"></div>
+    <div id="cardSizeContainer">
+        <div class="card-info flex space-between w-100">
+            <p class="card-name" id="cardName"></p>
+            <span id="historyIcon" class="card-history-icon customer-only hidden">
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21.5C9.7 21.5 7.696 20.7373 5.988 19.212C4.27933 17.6873 3.3 15.7833 3.05 13.5H5.1C5.33333
+                  15.2333 6.104 16.6667 7.412 17.8C8.72067 18.9333 10.25 19.5 12 19.5C13.95 19.5 15.604 18.8207 16.962 17.462C18.3207 16.104
+                  19 14.45 19 12.5C19 10.55 18.3207 8.89567 16.962 7.537C15.604 6.179 13.95 5.5 12 5.5C10.85 5.5 9.775 5.76667 8.775
+                  6.3C7.775 6.83333 6.93333 7.56667 6.25 8.5H9V10.5H3V4.5H5V6.85C5.85 5.78333 6.88767 4.95833 8.113
+                  4.375C9.33767 3.79167 10.6333 3.5 12 3.5C13.25 3.5 14.421 3.73733 15.513 4.212C16.6043 4.68733 17.5543
+                  5.329 18.363 6.137C19.171 6.94567 19.8127 7.89567 20.288 8.987C20.7627 10.079 21 11.25 21 12.5C21 13.75 20.7627 14.9207 20.288
+                  16.012C19.8127 17.104 19.171 18.054 18.363 18.862C17.5543 19.6707 16.6043 20.3127 15.513 20.788C14.421 21.2627 13.25 21.5 12
+                  21.5ZM14.8 16.7L11 12.9V7.5H13V12.1L16.2 15.3L14.8 16.7Z" fill="#46BFE6"/>
+              </svg>
+            </span>
+        </div>
+        <div class="stamp-list" id="stampList1">
+        </div>
+        <div class="stamp-list" id="stampList2">
+        </div>
+    
+    </div>
+    <div>
+        <h4 class="available-reward-title customer-only hidden" bfString="general.availableRewards"></h4>
+        <div id="listContainer" class="rewardListContainer customer-only"></div>
+    </div>
+    <div class="user-content-container customer-only hidden">
+        <div class="code-container">
+            <div id="qrCode" class="customer-only hidden"></div>
+            <div id="friendlyId" class="flex flex-align-center flex-justify-center customer-only hidden"></div>
+        </div>
+    </div>
+    <div id="stampsAction" class="hidden employee-only">
+        <p class="add-stamp-title" bfString="general.addStamps"></p>
+        <div id="stampsActionContainer">
+            <div id="decrementStamp">-</div>
+            <div id="stampValue">0</div>
+            <div id="incrementStamp">+</div>
+        </div>
+    </div>
+    <h4 class="available-reward-title employee-only hidden" bfString="general.availableRewards"></h4>
+    <div id="availableRewardList" class="employee-only hidden"></div>
+    <div id="btnContainer" class="btn-container employee-only hidden">
+        <button disabled id="confirmTransactionBtn" class="hidden employee-only" bfString="general.confirmBtn"></button>
+    </div>
+</div>
+<!--End Customer Screen-->
+
+<!--Start Transaction Customer Screen-->
+<div id="customerTransaction" class="screen hidden">
+    <p class="title" bfString="general.history"></p>
+    <div id="transactionCustomerList"></div>
+    <section id="transactionCustomerSkeletonContainer" class="skeleton-container"></section>
+</div>
+<!--End Transaction Customer Screen-->
+
+<!--Start Transaction Trainer Screen-->
+<div id="employeeTransaction" class="screen hidden">
+    <p class="title" bfString="general.history"></p>
+    <div id="transactionEmployeeList"></div>
+    <div id="fabSpeedDialContainer"></div>
+</div>
+<!--End Transaction Trainer Screen-->
 </body>
 </html>

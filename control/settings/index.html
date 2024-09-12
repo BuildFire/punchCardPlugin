@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8" />
+    <!-- CSS -->
+    <!-- Load helper.css to use our helper classes -->
+    <link href="../../../../styles/helper.css" rel="stylesheet"/>
+    <link href="../../../../styles/siteIcons.css" rel="stylesheet"/>
+    <link href="../../../../styles/components/control/tagsInput/tagsInput.min.css" rel="stylesheet"/>
+    
+    <!-- build:bundleCSSFiles  -->
+    <link href="./style.css" rel="stylesheet"/>
+    <!-- endbuild -->
+    
+    <script src="../../../../scripts/buildfire.min.js"></script>
+    <script src="../../../../scripts/buildfire/components/control/tagsInput/tagsInput.min.js"></script>
+    <link rel="stylesheet" href="../../../../styles/control/bf-base.css"/>
+    
+    <!-- build:bundleCPSharedJSFiles -->
+    <script src="../cpShared/index.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleSharedJSFiles -->
+    <script src="../../widget/global/js/models/Setting.js"></script>
+    <script src="../../widget/global/js/repositories/Settings.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:bundleJSFiles  -->
+    <script src="./js/index.js"></script>
+    <!-- endbuild -->
 
-	<!-- JS -->
-	<script src="../../../../scripts/buildfire.js"></script>
-
-	<!--
-	<script src="../../../../scripts/angular/angular.min.js"></script>
-	<script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
-	<script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
-	-->
 </head>
+
 <body>
-<span>Settings - Hello, world!</span>
+
+<div class="setting-container">
+    <label class="tooltip-container col-md-5">Allow to Approve Rewards
+        <span class="btn-info-icon btn-primary">
+            <span class="cp-tooltip">Select who is allowed to add stamps and approve awards.</span>
+        </span>
+    </label>
+    <div class="tags-input-container w-100">
+        <div class="w-100" id="customTagsInputContainer"></div>
+    </div>
+</div>
+
 </body>
 </html>
