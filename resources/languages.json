@@ -227,6 +227,14 @@
           "defaultValue": "Scanner works only on devices.",
           "required": true,
           "inputType": "text"
+        },
+        "networkError": {
+          "title": "Network error. Check connection and retry.",
+          "placeholder": "Network error. Check connection and retry.",
+          "maxLength": 80,
+          "defaultValue": "Network error. Check connection and retry.",
+          "required": true,
+          "inputType": "text"
         }
       }
     },

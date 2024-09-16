@@ -51,7 +51,7 @@ body.has-safe-area #home {
 .rewardListContainer .listView-items {
     margin-bottom: 14px;
 }
-.friendlyId {
+#friendlyId {
     padding-bottom: 1rem;
 }
 

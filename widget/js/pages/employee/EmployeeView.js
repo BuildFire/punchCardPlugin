@@ -35,6 +35,12 @@ const EmployeeView = {
     });
 
     confirmBtn.addEventListener('click', async () => {
+      if (!navigator.onLine) {
+        buildfire.dialog.toast({
+          message: await getLanguage('general.networkError'),
+        });
+        return;
+      }
       const userId = document.getElementById('userIdField').value;
       if (!userId) {
         userIdError.innerText = await getLanguage('general.userIdRequired');
@@ -127,7 +133,7 @@ const EmployeeView = {
   async  _openCustomerProfile(userId) {
     try {
       const result = await CustomerController.getCustomerInfo(userId, widgetAppState.settings.cardSize);
-      if (result.currentStamps) {
+      if (result.currentStamps !== undefined) {
         widgetAppState.currentCustomer.currentStamps = result.currentStamps;
         widgetAppState.currentCustomer.availableRewards = result.availableRewards;
       }
