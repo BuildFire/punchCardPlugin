@@ -7,9 +7,9 @@ const searchTableConfig = {
   },
   columns: [{
     header: 'Date',
-    data: '<span class=\'margin-bottom-five\'>${data.date}</span>',
+    data: '<span class=\'margin-bottom-five\'>${TransactionController.formatDate(data.createdOn)}</span>',
     type: 'string',
-    width: '100px',
+    width: '165px',
     sortBy: 'date1',
     defaultSorted: true,
   }, {
@@ -21,18 +21,18 @@ const searchTableConfig = {
     header: 'Stamps',
     data: '<span class=\'margin-bottom-five\'>${data.changeValue}</span>',
     type: 'string',
-    width: '100px',
+    width: '90px',
   }, {
     header: 'Rewards',
     data: '<span class=\'margin-bottom-five\'>${TransactionController.getRewards(data)}</span>',
     type: 'string',
-    width: '100px',
+    width: '90px',
   },
   {
     header: 'Redeems',
     data: '<span class=\'margin-bottom-five\'>${TransactionController.getRedeems(data)}</span>',
     type: 'string',
-    width: '100px',
+    width: '90px',
   },
   {
     header: 'Authorized by',
@@ -130,6 +130,23 @@ const TransactionController = {
     }
 
     return 0;
+  },
+  formatDate(dateString) {
+    console.log('dateString:', dateString);
+    const date = new Date(dateString);
+
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${month}/${day}/${year}, ${hours}:${formattedMinutes} ${ampm}`;
   },
 
   init() {

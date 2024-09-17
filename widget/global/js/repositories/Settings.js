@@ -18,7 +18,6 @@ class Settings {
         if (err) return reject(err);
         if (!res || !res.data || !Object.keys(res.data).length) {
           const data = new Setting().toJSON();
-          Settings.save(data);
           resolve({ settingData: data, isNewInstance: true });
         } else {
           const data = new Setting(res.data).toJSON();

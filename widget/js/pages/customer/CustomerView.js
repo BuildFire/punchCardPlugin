@@ -116,8 +116,14 @@ const CustomerView = {
     this._initRewardList(availbleRewardLength);
     this._updateConfirmButton();
   },
-  _addNewTransaction() {
+  async _addNewTransaction() {
     try {
+      if (!navigator.onLine) {
+        buildfire.dialog.toast({
+          message: await getLanguage('general.networkError'),
+        });
+        return;
+      }
       const checkboxes = document.querySelectorAll('input[type="checkbox"]');
       this._uiElement.confirmTransactionBtn.disabled = true;
 
@@ -341,6 +347,11 @@ const CustomerView = {
       availableRewardList.classList.add('empty-state');
       availableRewardList.appendChild(emptyState);
     }
+  },
+  refreshRewardList() {
+    let availbleRewardLength = CustomerController.getAvailbleRewardLength(this.newStamps, widgetAppState.currentCustomer.currentStamps, widgetAppState.settings.cardSize);
+    availbleRewardLength += widgetAppState.currentCustomer.availableRewards.length;
+    this._initRewardList(availbleRewardLength);
   },
 
   _createCheckbox(index) {

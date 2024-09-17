@@ -39,6 +39,7 @@ const contentController = {
     const { settingData, isNewInstance } = await Settings.get();
     contentState.settings = settingData;
     if (isNewInstance) {
+      await Settings.save(contentState.settings);
       await UserCodeSequences.initializeCodeSequence();
       await AnalyticsManager.init();
     }
