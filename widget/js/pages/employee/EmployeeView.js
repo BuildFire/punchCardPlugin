@@ -17,7 +17,7 @@ const EmployeeView = {
 
     const formFab = new buildfire.components.fabSpeedDial('#fabSpeedDialContainer', formOptions);
     const scannerFab = new buildfire.components.fabSpeedDial('#fabSpeedDialContainer', scannerOptions);
-    scannerFab.onMainButtonClick = () => this._openScanner();
+    scannerFab.onMainButtonClick = () => this._openScanner(true, true);
     formFab.onMainButtonClick = () => this._openMaterialForm();
   },
 
@@ -69,7 +69,7 @@ const EmployeeView = {
       document.getElementById('userIdField').value = '';
     });
   },
-  _openScanner(showDeviceOnlyMessage = true) {
+  async _openScanner(showDeviceOnlyMessage = true, showCameraPermissionMessage = false) {
     const isWeb = buildfire.getContext().device.platform === 'web';
     if (isWeb) {
       if (!showDeviceOnlyMessage) return null;
@@ -81,6 +81,7 @@ const EmployeeView = {
 
       return null;
     }
+
     buildfire.services.camera.barcodeScanner.scan(
       {
         preferFrontCamera: false,
@@ -88,7 +89,21 @@ const EmployeeView = {
         formats: 'QR_CODE',
       },
       async (err, result) => {
-        if (err) return console.error(err);
+        if (err) {
+          if (JSON.stringify(err) === '"Scanning failed: Access to the camera has been prohibited; please enable it in the Settings app to continue"') {
+            if (showCameraPermissionMessage) {
+              const permissionErrorMessage = await getLanguage('general.cameraPermissionRequired');
+              buildfire.dialog.toast({
+                message: permissionErrorMessage,
+                type: 'danger',
+              });
+            }
+          } else {
+            buildfire.dialog.toast({ message: err, type: 'danger' });
+          }
+          return console.error(err);
+        }
+
         if (result.cancelled) {
           return null;
         }

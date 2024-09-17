@@ -156,7 +156,8 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmpl
 }
 
 .customer-info #lifeTimeStamps {
-    margin: 8px 0;
+    margin-top: 8px;
+    margin-bottom: 2px;
 }
 
 .customer-info #lifeTimeStamps, .customer-info #lifeTimeRedeems {

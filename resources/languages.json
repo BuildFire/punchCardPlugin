@@ -229,10 +229,18 @@
           "inputType": "text"
         },
         "networkError": {
-          "title": "Network error. Check connection and retry.",
-          "placeholder": "Network error. Check connection and retry.",
+          "title": "Check connection and retry.",
+          "placeholder": "Check connection and retry.",
           "maxLength": 80,
-          "defaultValue": "Network error. Check connection and retry.",
+          "defaultValue": "Check connection and retry.",
+          "required": true,
+          "inputType": "text"
+        },
+        "cameraPermissionRequired": {
+          "title": "Camera permission required.",
+          "placeholder": "Access to the camera has been prohibited, please enable it in the settings app to continue",
+          "maxLength": 80,
+          "defaultValue": "Access to the camera has been prohibited, please enable it in the settings app to continue",
           "required": true,
           "inputType": "text"
         }
