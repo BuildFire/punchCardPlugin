@@ -90,7 +90,9 @@ const EmployeeView = {
       },
       async (err, result) => {
         if (err) {
-          if (JSON.stringify(err) === '"Scanning failed: Access to the camera has been prohibited; please enable it in the Settings app to continue"') {
+          if (JSON.stringify(err).toLowerCase() === '"scanning failed: access to the camera has been prohibited; please enable it in the settings app to continue"'.toLowerCase()
+          || JSON.stringify(err).toLowerCase() === '"scanning failed: Illegal access"'.toLowerCase()
+          ) {
             if (showCameraPermissionMessage) {
               const permissionErrorMessage = await getLanguage('general.cameraPermissionRequired');
               buildfire.dialog.toast({
