@@ -1,7 +1,7 @@
 {
   "author": "Buildfire",
   "pluginName": "Punch Card",
-  "pluginDescription": "Say farewell to conventional loyalty cards and embrace a seamless, digital punch card experience. With this feature, your users effortlessly earn rewards with every purchase – just 'punch' their virtual card, and witness their loyalty points grow. Our user-friendly design ensures tracking their loyalty journey and redeeming rewards is a breeze.",
+  "pluginDescription": "Ditch traditional loyalty cards and use our digital punch card to earn rewards with every purchase, making tracking and redeeming loyalty points effortless.",
   "supportEmail": "support@buildfire.com",
   "requireLogin": true,
   "control": {
