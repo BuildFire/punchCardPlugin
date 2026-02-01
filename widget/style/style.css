@@ -29,8 +29,7 @@ object {
 }
 
 body.has-safe-area #home {
-    height: calc(100vh - constant(safe-area-inset-bottom)) !important;
-    height: calc(100vh - env(safe-area-inset-bottom)) !important;
+    height: calc(100vh - var(--bf-safe-area-inset-bottom)) !important;
 }
 
 #home .listView-container > .empty_state {
@@ -69,8 +68,7 @@ body.has-safe-area #home {
 }
 
 body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmployeeList {
-    height: calc(90vh - constant(safe-area-inset-bottom)) !important;
-    height: calc(90vh - env(safe-area-inset-bottom)) !important;
+    height: calc(90vh - var(--bf-safe-area-inset-bottom)) !important;
 }
 
 
@@ -262,8 +260,7 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmpl
 }
 
 html[safe-area="true"] body.has-safe-area #availableRewardList {
-    padding-bottom: calc(80px + constant(safe-area-inset-bottom)) !important;
-    padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+    padding-bottom: calc(80px + var(--bf-safe-area-inset-bottom)) !important;
 }
 
 #availableRewardList.empty-state img {
@@ -345,6 +342,5 @@ html[safe-area="true"] body.has-safe-area #availableRewardList {
 }
 
 html[safe-area="true"] body.has-safe-area .btn-container {
-    padding-bottom: calc(1rem + constant(safe-area-inset-bottom)) !important;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+    padding-bottom: calc(1rem + var(--bf-safe-area-inset-bottom)) !important;
 }
