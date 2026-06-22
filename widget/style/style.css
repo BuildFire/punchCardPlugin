@@ -26,10 +26,7 @@ object {
 #home {
     height: 100vh;
     overflow: scroll;
-}
-
-body.has-safe-area #home {
-    height: calc(100vh - var(--bf-safe-area-inset-bottom)) !important;
+    padding-bottom: calc(16px + var(--bf-safe-area-inset-bottom)) !important;
 }
 
 #home .listView-container > .empty_state {
@@ -50,6 +47,9 @@ body.has-safe-area #home {
 .rewardListContainer .listView-items {
     margin-bottom: 14px;
 }
+#transactionCustomerList .listView-items {
+    padding-bottom: calc(16px + var(--bf-safe-area-inset-bottom)) !important;
+}
 #friendlyId {
     padding-bottom: 1rem;
 }
@@ -65,10 +65,6 @@ body.has-safe-area #home {
 #transactionCustomerList, #transactionEmployeeList {
     height: 90vh;
     overflow: scroll;
-}
-
-body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmployeeList {
-    height: calc(90vh - var(--bf-safe-area-inset-bottom)) !important;
 }
 
 
@@ -89,6 +85,10 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmpl
 #transactionEmployeeList > .empty_state, #transactionCustomerList > .empty_state {
     height: calc(100vh - 12rem);
     margin-top: -50px;
+}
+
+#transactionEmployeeList {
+    padding-bottom: calc(4px + var(--bf-safe-area-inset-bottom)) !important;
 }
 
 #transactionEmployeeList > .empty_state::after, #transactionCustomerList > .empty_state::after {
@@ -254,13 +254,9 @@ body.has-safe-area #transactionCustomerList, body.has-safe-area #transactionEmpl
 }
 
 #availableRewardList {
-    padding-bottom: 80px;
     position: relative;
     top: -9px;
-}
-
-html[safe-area="true"] body.has-safe-area #availableRewardList {
-    padding-bottom: calc(80px + var(--bf-safe-area-inset-bottom)) !important;
+    padding-bottom: 24px;
 }
 
 #availableRewardList.empty-state img {
@@ -268,7 +264,7 @@ html[safe-area="true"] body.has-safe-area #availableRewardList {
 }
 
 #confirmTransactionBtn {
-    width: 187.5px;
+    width: calc(100% - 32px);
     height: 40px;
     gap: 0;
     border-radius: 4px;
@@ -341,6 +337,6 @@ html[safe-area="true"] body.has-safe-area #availableRewardList {
     z-index: 1;
 }
 
-html[safe-area="true"] body.has-safe-area .btn-container {
+body .btn-container {
     padding-bottom: calc(1rem + var(--bf-safe-area-inset-bottom)) !important;
 }
