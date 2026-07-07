@@ -1,6 +1,5 @@
 const initApp = async () => {
   buildfire.appearance.titlebar.show();
-  applySafeAreaStyles();
   try {
     const { settingData } = await Settings.get();
     widgetAppState.settings = settingData;

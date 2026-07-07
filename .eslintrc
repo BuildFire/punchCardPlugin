@@ -70,7 +70,6 @@
     "ANALYTICS_EVENTS": true,
     "NotificationsManager": true,
     "AnalyticsManager": true,
-    "parseDeeplinkData": true,
-    "applySafeAreaStyles": true
+    "parseDeeplinkData": true
   }
 }
